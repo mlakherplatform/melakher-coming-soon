@@ -4,21 +4,36 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#0b0b0d">
 
     <meta name="description"
           content="م الآخر — كل حاجة أبسط.">
 
-    <title>م الآخر | قريبًا</title>
+    <title>م الآخر — قريبًا</title>
 
     <style>
 
+        /* =====================================================
+           RESET
+        ===================================================== */
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
         body {
-            margin: 0;
             min-height: 100vh;
 
             font-family:
@@ -27,133 +42,490 @@
                 Arial,
                 sans-serif;
 
+            color: #ffffff;
+
+            background: #080809;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           BACKGROUND
+        ===================================================== */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
             background:
                 radial-gradient(
-                    circle at 50% 0%,
-                    rgba(179, 38, 46, 0.08),
+                    circle at 50% -10%,
+                    rgba(180, 32, 43, 0.22),
                     transparent 38%
                 ),
-                #f7f7f5;
 
-            color: #171717;
+                radial-gradient(
+                    circle at 0% 100%,
+                    rgba(180, 32, 43, 0.08),
+                    transparent 30%
+                );
+
+            z-index: -2;
+        }
+
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            opacity: 0.035;
+
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+
+            z-index: -1;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .page {
+            min-height: 100vh;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            padding: 24px;
+            padding: 30px 20px;
         }
 
-        .container {
+
+        .wrapper {
             width: 100%;
-            max-width: 680px;
 
-            text-align: center;
+            max-width: 980px;
         }
 
-        .card {
-            padding: 70px 30px;
 
-            border-radius: 30px;
+        /* =====================================================
+           NAV
+        ===================================================== */
 
-            background: rgba(255, 255, 255, 0.78);
+        .topbar {
+            display: flex;
 
-            border: 1px solid rgba(0, 0, 0, 0.07);
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 35px;
+        }
+
+
+        .brand-small {
+            font-size: 15px;
+
+            font-weight: 700;
+
+            color: rgba(255,255,255,.75);
+
+            letter-spacing: .3px;
+        }
+
+
+        .status {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 7px 13px;
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            border-radius: 999px;
+
+            background: rgba(255,255,255,.035);
+
+            color: rgba(255,255,255,.7);
+
+            font-size: 12px;
+        }
+
+
+        .status-dot {
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #b3262e;
 
             box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.08);
-
-            backdrop-filter: blur(14px);
+                0 0 0 5px rgba(179,38,46,.10);
         }
 
-        .logo {
-            width: 220px;
-            max-width: 65%;
 
-            max-height: 140px;
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            position: relative;
+
+            text-align: center;
+
+            padding:
+                clamp(50px, 9vw, 90px)
+                clamp(22px, 5vw, 70px);
+
+            border-radius: 38px;
+
+            border: 1px solid rgba(255,255,255,.09);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.065),
+                    rgba(255,255,255,.018)
+                );
+
+            box-shadow:
+                0 40px 100px rgba(0,0,0,.45),
+
+                inset 0 1px 0
+                rgba(255,255,255,.05);
+
+            backdrop-filter: blur(22px);
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================================
+           DECORATIVE GLOW
+        ===================================================== */
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 340px;
+
+            height: 340px;
+
+            top: -180px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            border-radius: 50%;
+
+            background:
+                rgba(179,38,46,.14);
+
+            filter: blur(80px);
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo-box {
+            position: relative;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin-bottom: 34px;
+        }
+
+
+        .logo {
+            width: min(260px, 62vw);
+
+            max-height: 150px;
 
             object-fit: contain;
 
             display: block;
 
-            margin: 0 auto 30px;
+            filter:
+                drop-shadow(
+                    0 15px 30px
+                    rgba(0,0,0,.35)
+                );
         }
 
+
+        /* =====================================================
+           BADGE
+        ===================================================== */
+
         .badge {
-            display: inline-block;
+            display: inline-flex;
 
-            padding: 7px 16px;
+            align-items: center;
 
-            border-radius: 50px;
+            gap: 8px;
 
-            background: rgba(179, 38, 46, 0.09);
+            padding: 8px 15px;
 
-            color: #b3262e;
+            border-radius: 999px;
 
-            font-size: 13px;
+            background:
+                rgba(179,38,46,.10);
+
+            border:
+                1px solid
+                rgba(179,38,46,.20);
+
+            color: #e5a2a6;
+
+            font-size: 12px;
 
             font-weight: 700;
 
-            margin-bottom: 18px;
+            margin-bottom: 23px;
         }
+
+
+        /* =====================================================
+           TITLE
+        ===================================================== */
 
         h1 {
-            margin: 0;
+            font-size:
+                clamp(
+                    42px,
+                    8vw,
+                    78px
+                );
 
-            font-size: clamp(38px, 8vw, 58px);
+            line-height: 1.08;
 
-            line-height: 1.15;
+            letter-spacing: -3px;
 
-            letter-spacing: -2px;
+            font-weight: 800;
+
+            margin-bottom: 22px;
         }
 
-        p {
-            margin: 20px auto 0;
 
-            max-width: 500px;
+        h1 span {
+            color: #b3262e;
+        }
 
-            color: #777;
 
-            font-size: clamp(15px, 3.5vw, 18px);
+        /* =====================================================
+           DESCRIPTION
+        ===================================================== */
+
+        .description {
+            max-width: 600px;
+
+            margin: auto;
+
+            color: rgba(255,255,255,.58);
+
+            font-size:
+                clamp(
+                    15px,
+                    2.5vw,
+                    18px
+                );
 
             line-height: 2;
+
+            font-weight: 400;
         }
 
-        .line {
-            width: 55px;
 
-            height: 3px;
+        /* =====================================================
+           DIVIDER
+        ===================================================== */
 
-            background: #b3262e;
+        .divider {
+            width: 70px;
+
+            height: 2px;
+
+            margin: 35px auto;
 
             border-radius: 20px;
 
-            margin: 30px auto 0;
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #b3262e,
+                    transparent
+                );
         }
 
-        footer {
-            margin-top: 20px;
 
-            color: #aaa;
+        /* =====================================================
+           ACTIONS
+        ===================================================== */
 
-            font-size: 12px;
+        .actions {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-top: 28px;
         }
+
+
+        .button {
+            min-width: 150px;
+
+            padding: 13px 22px;
+
+            border-radius: 13px;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition:
+                transform .25s ease,
+                background .25s ease,
+                border-color .25s ease;
+        }
+
+
+        .button-primary {
+            color: #ffffff;
+
+            background: #b3262e;
+
+            border: 1px solid #b3262e;
+
+            box-shadow:
+                0 12px 30px
+                rgba(179,38,46,.20);
+        }
+
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+
+            background: #c32d36;
+        }
+
+
+        .button-secondary {
+            color: rgba(255,255,255,.78);
+
+            background:
+                rgba(255,255,255,.035);
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+        }
+
+
+        .button-secondary:hover {
+            transform: translateY(-2px);
+
+            background:
+                rgba(255,255,255,.07);
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: rgba(255,255,255,.28);
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
 
         @media (max-width: 600px) {
 
-            .card {
-                padding: 50px 22px;
+            .page {
+                padding: 18px 14px;
             }
 
-            .logo {
-                width: 180px;
+
+            .topbar {
+                margin-bottom: 18px;
             }
+
+
+            .hero {
+                border-radius: 27px;
+
+                padding:
+                    50px 20px
+                    45px;
+            }
+
 
             h1 {
-                font-size: 40px;
+                letter-spacing: -2px;
+            }
+
+
+            .description {
+                line-height: 1.9;
+            }
+
+
+            .button {
+                width: 100%;
+
+                max-width: 260px;
             }
 
         }
+
 
     </style>
 
@@ -162,42 +534,133 @@
 
 <body>
 
-    <main class="container">
 
-        <section class="card">
+<div class="page">
 
-            <!-- Logo -->
-            <img
-                src="assets/logo.png"
-                alt="م الآخر"
-                class="logo"
-            >
+    <div class="wrapper">
 
-            <!-- Status -->
-            <div class="badge">
-                قريبًا
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+            <div class="brand-small">
+                م الآخر
             </div>
 
-            <!-- Main Title -->
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                الموقع تحت التجهيز
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HERO -->
+
+        <main class="hero">
+
+
+            <!-- LOGO -->
+
+            <div class="logo-box">
+
+                <img
+                    src="assets/logo.png"
+                    alt="م الآخر"
+                    class="logo"
+                >
+
+            </div>
+
+
+
+            <!-- BADGE -->
+
+            <div class="badge">
+
+                قريبًا جدًا
+
+            </div>
+
+
+
+            <!-- TITLE -->
+
             <h1>
-                كل حاجة أبسط.
+
+                كل حاجة
+                <span>أبسط.</span>
+
             </h1>
 
-            <!-- Description -->
-            <p>
-                بنجهّز حاجة جديدة تخلي الوصول
-                للحاجة اللي محتاجها أسهل وأسرع وأوضح.
+
+
+            <!-- DESCRIPTION -->
+
+            <p class="description">
+
+                بنجهّز تجربة جديدة تساعدك توصل
+                للي محتاجه بشكل أسهل،
+                أسرع وأوضح.
+
             </p>
 
-            <div class="line"></div>
 
-        </section>
 
-        <footer>
-            © م الآخر
+            <!-- DIVIDER -->
+
+            <div class="divider"></div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="actions">
+
+                <!-- غيّر الرقم لو هتضيف واتساب -->
+
+                <a
+                    href="#"
+                    class="button button-primary"
+                    onclick="return false;"
+                >
+                    قريبًا
+                </a>
+
+
+                <a
+                    href="mailto:info@melakher.com"
+                    class="button button-secondary"
+                >
+                    تواصل معنا
+                </a>
+
+            </div>
+
+
+        </main>
+
+
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+
+            © 2026 م الآخر — جميع الحقوق محفوظة
+
         </footer>
 
-    </main>
+
+    </div>
+
+</div>
+
 
 </body>
 
