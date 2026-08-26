@@ -35,21 +35,19 @@
 
             --background: #F3F1EC;
 
-            --surface: #FAF9F6;
+            --surface: #FBFAF7;
 
-            --surface-soft: #F7F5F1;
-
-            --text: #202020;
+            --text: #242321;
 
             --muted: #77736D;
 
             --accent: #A92D35;
 
-            --accent-soft: #C05A60;
+            --accent-soft: #B94B52;
 
-            --border: #DEDAD2;
+            --stone: #9B968E;
 
-            --stone: #B8B4AC;
+            --border: #DDD8CF;
 
         }
 
@@ -59,14 +57,20 @@
         ===================================================== */
 
         * {
+
             margin: 0;
+
             padding: 0;
+
             box-sizing: border-box;
+
         }
 
 
         html {
+
             min-height: 100%;
+
         }
 
 
@@ -74,25 +78,29 @@
 
             min-height: 100vh;
 
+            position: relative;
+
+            overflow: hidden;
+
             font-family:
+
                 "Cairo",
+
                 "Noto Sans Arabic",
+
                 Arial,
+
                 sans-serif;
 
             color: var(--text);
 
             background: var(--background);
 
-            overflow: hidden;
-
-            position: relative;
-
         }
 
 
         /* =====================================================
-           MARBLE BACKGROUND
+           SOFT MARBLE ATMOSPHERE
         ===================================================== */
 
         body::before {
@@ -105,20 +113,26 @@
 
             pointer-events: none;
 
-            opacity: .38;
-
             background:
 
                 radial-gradient(
-                    ellipse at 20% 30%,
+
+                    ellipse at 20% 25%,
+
                     rgba(255,255,255,.95),
+
                     transparent 35%
+
                 ),
 
                 radial-gradient(
-                    ellipse at 80% 70%,
-                    rgba(220,216,207,.65),
+
+                    ellipse at 80% 75%,
+
+                    rgba(215,211,203,.55),
+
                     transparent 38%
+
                 );
 
             filter: blur(35px);
@@ -138,38 +152,56 @@
 
             position: fixed;
 
-            inset: -100px;
+            inset: -150px;
 
             pointer-events: none;
 
-            opacity: .13;
+            opacity: .12;
 
             background:
 
                 linear-gradient(
+
                     112deg,
+
                     transparent 20%,
-                    rgba(120,116,108,.22) 20.3%,
+
+                    rgba(110,105,98,.20) 20.3%,
+
                     transparent 20.7%
+
                 ),
 
                 linear-gradient(
+
                     68deg,
+
                     transparent 45%,
-                    rgba(120,116,108,.16) 45.2%,
+
+                    rgba(110,105,98,.15) 45.2%,
+
                     transparent 45.5%
+
                 ),
 
                 linear-gradient(
+
                     130deg,
+
                     transparent 72%,
-                    rgba(120,116,108,.14) 72.3%,
+
+                    rgba(110,105,98,.13) 72.3%,
+
                     transparent 72.6%
+
                 );
 
             background-size:
+
                 700px 600px,
+
                 850px 700px,
+
                 900px 800px;
 
             transform: rotate(-5deg);
@@ -202,7 +234,7 @@
 
             width: 100%;
 
-            max-width: 960px;
+            max-width: 950px;
 
             text-align: center;
 
@@ -221,12 +253,16 @@
 
             justify-content: space-between;
 
-            margin-bottom: 38px;
+            margin-bottom: 35px;
 
             animation:
+
                 fadeDown
+
                 .9s
+
                 ease
+
                 both;
 
         }
@@ -251,9 +287,9 @@
 
             gap: 8px;
 
-            font-size: 12px;
-
             color: var(--muted);
+
+            font-size: 12px;
 
         }
 
@@ -269,7 +305,9 @@
             background: var(--accent);
 
             box-shadow:
+
                 0 0 0 5px
+
                 rgba(169,45,53,.08);
 
         }
@@ -284,36 +322,49 @@
             position: relative;
 
             padding:
-                clamp(60px, 9vw, 95px)
-                clamp(25px, 7vw, 90px);
+
+                clamp(55px, 8vw, 85px)
+
+                clamp(25px, 7vw, 80px);
+
+            border-radius: 36px;
 
             background:
-                rgba(250,249,246,.82);
+
+                rgba(251,250,247,.84);
 
             border:
-                1px solid
-                rgba(190,185,176,.55);
 
-            border-radius: 34px;
+                1px solid
+
+                rgba(190,185,177,.55);
 
             box-shadow:
 
-                0 25px 70px
+                0 30px 80px
+
                 rgba(70,65,58,.10),
 
                 inset 0 1px 0
-                rgba(255,255,255,.9);
+
+                rgba(255,255,255,.95);
 
             backdrop-filter:
-                blur(12px);
+
+                blur(14px);
 
             overflow: hidden;
 
             animation:
+
                 fadeUp
+
                 1s
+
                 .1s
+
                 ease
+
                 both;
 
         }
@@ -334,52 +385,20 @@
             left: 50%;
 
             transform:
+
                 translateX(-50%);
 
-            width: 150px;
+            width: 130px;
 
             height: 3px;
 
-            background:
-                var(--accent);
-
             border-radius:
+
                 0 0 10px 10px;
 
-        }
-
-
-        /* =====================================================
-           SOFT LIGHT
-        ===================================================== */
-
-        .hero::after {
-
-            content: "";
-
-            position: absolute;
-
-            width: 420px;
-
-            height: 420px;
-
-            top: -300px;
-
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-
-            border-radius: 50%;
-
             background:
-                rgba(169,45,53,.055);
 
-            filter:
-                blur(70px);
-
-            pointer-events:
-                none;
+                var(--accent);
 
         }
 
@@ -390,15 +409,13 @@
 
         .logo-wrapper {
 
-            position: relative;
-
             display: flex;
 
             justify-content: center;
 
             align-items: center;
 
-            margin-bottom: 42px;
+            margin-bottom: 28px;
 
         }
 
@@ -406,53 +423,137 @@
         .logo {
 
             width:
-                min(285px, 65vw);
+
+                min(270px, 62vw);
 
             max-height:
-                165px;
+
+                150px;
 
             object-fit:
+
                 contain;
 
             display:
+
                 block;
 
             filter:
+
                 drop-shadow(
-                    0 12px 22px
+
+                    0 12px 25px
+
                     rgba(0,0,0,.08)
+
                 );
 
         }
 
 
         /* =====================================================
-           MAIN TITLE
+           QURAN VERSE
+        ===================================================== */
+
+        .verse {
+
+            margin:
+
+                0 auto 34px;
+
+            color:
+
+                var(--stone);
+
+            font-family:
+
+                "Amiri",
+
+                "Noto Naskh Arabic",
+
+                "Times New Roman",
+
+                serif;
+
+            font-size:
+
+                clamp(
+
+                    18px,
+
+                    3vw,
+
+                    23px
+
+                );
+
+            line-height:
+
+                1.9;
+
+        }
+
+
+        .verse-reference {
+
+            display: block;
+
+            margin-top: 2px;
+
+            font-family:
+
+                "Cairo",
+
+                Arial,
+
+                sans-serif;
+
+            font-size: 10px;
+
+            color:
+
+                #AAA59D;
+
+        }
+
+
+        /* =====================================================
+           MAIN MESSAGE
         ===================================================== */
 
         h1 {
 
             font-size:
+
                 clamp(
+
                     34px,
+
                     6vw,
+
                     62px
+
                 );
 
             line-height:
-                1.35;
+
+                1.4;
 
             letter-spacing:
-                -1.8px;
+
+                -1.7px;
 
             font-weight:
+
                 800;
 
             color:
+
                 var(--text);
 
             margin-bottom:
-                20px;
+
+                17px;
 
         }
 
@@ -460,32 +561,41 @@
         h1 span {
 
             color:
+
                 var(--accent);
 
         }
 
 
         /* =====================================================
-           TAGLINE
+           BRAND TAGLINE
         ===================================================== */
 
         .tagline {
 
             font-size:
+
                 clamp(
-                    19px,
+
+                    20px,
+
                     3.5vw,
-                    27px
+
+                    28px
+
                 );
 
             line-height:
+
                 1.7;
 
             font-weight:
+
                 600;
 
             color:
-                #3E3B37;
+
+                #403D39;
 
         }
 
@@ -493,9 +603,11 @@
         .tagline strong {
 
             color:
+
                 var(--accent);
 
             font-weight:
+
                 800;
 
         }
@@ -508,18 +620,77 @@
         .divider {
 
             width:
-                58px;
+
+                60px;
 
             height:
+
                 2px;
 
             margin:
-                35px auto 0;
+
+                34px auto 27px;
 
             border-radius:
+
                 20px;
 
             background:
+
+                var(--accent);
+
+        }
+
+
+        /* =====================================================
+           COMING SOON
+        ===================================================== */
+
+        .coming-soon {
+
+            display:
+
+                inline-flex;
+
+            align-items:
+
+                center;
+
+            gap:
+
+                9px;
+
+            color:
+
+                var(--muted);
+
+            font-size:
+
+                13px;
+
+            font-weight:
+
+                600;
+
+        }
+
+
+        .coming-soon .dot {
+
+            width:
+
+                6px;
+
+            height:
+
+                6px;
+
+            border-radius:
+
+                50%;
+
+            background:
+
                 var(--accent);
 
         }
@@ -532,19 +703,27 @@
         footer {
 
             margin-top:
-                24px;
+
+                22px;
 
             color:
-                rgba(32,32,32,.38);
+
+                rgba(36,35,33,.35);
 
             font-size:
+
                 11px;
 
             animation:
+
                 fadeUp
+
                 1s
+
                 .4s
+
                 ease
+
                 both;
 
         }
@@ -561,6 +740,7 @@
                 opacity: 0;
 
                 transform:
+
                     translateY(18px);
 
             }
@@ -570,6 +750,7 @@
                 opacity: 1;
 
                 transform:
+
                     translateY(0);
 
             }
@@ -584,6 +765,7 @@
                 opacity: 0;
 
                 transform:
+
                     translateY(-12px);
 
             }
@@ -593,6 +775,7 @@
                 opacity: 1;
 
                 transform:
+
                     translateY(0);
 
             }
@@ -607,17 +790,23 @@
         @media (max-width: 600px) {
 
             body {
-                overflow: auto;
+
+                overflow:
+
+                    auto;
+
             }
 
 
             .page {
 
                 min-height:
+
                     100vh;
 
                 padding:
-                    18px 14px;
+
+                    16px 14px;
 
             }
 
@@ -625,7 +814,8 @@
             .topbar {
 
                 margin-bottom:
-                    22px;
+
+                    20px;
 
             }
 
@@ -633,6 +823,7 @@
             .brand {
 
                 font-size:
+
                     14px;
 
             }
@@ -641,22 +832,12 @@
             .hero {
 
                 padding:
-                    55px 20px
-                    48px;
+
+                    48px 19px;
 
                 border-radius:
+
                     27px;
-
-            }
-
-
-            .logo {
-
-                width:
-                    205px;
-
-                max-height:
-                    120px;
 
             }
 
@@ -664,7 +845,34 @@
             .logo-wrapper {
 
                 margin-bottom:
-                    35px;
+
+                    25px;
+
+            }
+
+
+            .logo {
+
+                width:
+
+                    200px;
+
+                max-height:
+
+                    115px;
+
+            }
+
+
+            .verse {
+
+                font-size:
+
+                    18px;
+
+                margin-bottom:
+
+                    28px;
 
             }
 
@@ -672,13 +880,16 @@
             h1 {
 
                 font-size:
-                    36px;
 
-                letter-spacing:
-                    -1px;
+                    35px;
 
                 line-height:
-                    1.4;
+
+                    1.45;
+
+                letter-spacing:
+
+                    -1px;
 
             }
 
@@ -686,15 +897,17 @@
             .tagline {
 
                 font-size:
+
                     19px;
 
             }
 
 
-            footer {
+            .divider {
 
-                margin-top:
-                    18px;
+                margin:
+
+                    28px auto 23px;
 
             }
 
@@ -715,9 +928,9 @@
         <div class="container">
 
 
-            <!-- ============================================
+            <!-- =================================================
                  TOP BAR
-            ============================================= -->
+            ================================================== -->
 
             <header class="topbar">
 
@@ -742,9 +955,9 @@
 
 
 
-            <!-- ============================================
+            <!-- =================================================
                  HERO
-            ============================================= -->
+            ================================================== -->
 
             <main class="hero">
 
@@ -754,10 +967,30 @@
                 <div class="logo-wrapper">
 
                     <img
+
                         src="assets/logo.png"
+
                         alt="م الآخر"
+
                         class="logo"
+
                     >
+
+                </div>
+
+
+
+                <!-- QURAN VERSE -->
+
+                <div class="verse">
+
+                    ﴿وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ﴾
+
+                    <span class="verse-reference">
+
+                        هود: 88
+
+                    </span>
 
                 </div>
 
@@ -768,17 +1001,28 @@
                 <h1>
 
                     تجربة جديدة في
-                    <span>عالم الرخام</span>
+
+                    <span>
+
+                        عالم الرخام
+
+                    </span>
 
                 </h1>
 
 
 
-                <!-- BRAND TAGLINE -->
+                <!-- BRAND MESSAGE -->
 
                 <div class="tagline">
 
-                    م الآخر — <strong>كل حاجة أسهل.</strong>
+                    م الآخر —
+
+                    <strong>
+
+                        كل حاجة أسهل.
+
+                    </strong>
 
                 </div>
 
@@ -789,13 +1033,25 @@
                 <div class="divider"></div>
 
 
+
+                <!-- COMING SOON -->
+
+                <div class="coming-soon">
+
+                    <span class="dot"></span>
+
+                    بمشيئة الله، قريبًا
+
+                </div>
+
+
             </main>
 
 
 
-            <!-- ============================================
+            <!-- =================================================
                  FOOTER
-            ============================================= -->
+            ================================================== -->
 
             <footer>
 
