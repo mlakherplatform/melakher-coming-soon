@@ -1,0 +1,561 @@
+<!doctype html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>أداة مراجعة البيانات</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+<body>
+
+  <!-- =====================================================
+       TOP BAR
+  ====================================================== -->
+
+  <header class="topbar">
+
+    <div class="brand">
+
+      <h1>
+        أداة مراجعة البيانات
+      </h1>
+
+      <p>
+        مراجعة وتعديل البيانات وحفظ نسخة نهائية جاهزة لقاعدة البيانات
+      </p>
+
+    </div>
+
+
+    <div class="top-actions">
+
+      <!-- =================================================
+           IMPORT
+      ================================================== -->
+
+      <button
+        id="importBtn"
+        class="secondary"
+        type="button"
+      >
+        استيراد بيانات
+      </button>
+
+
+      <!-- =================================================
+           EXPORT REVIEWED
+      ================================================== -->
+
+      <button
+        id="exportReviewedBtn"
+        class="secondary"
+        type="button"
+      >
+        تصدير المراجعة
+      </button>
+
+
+      <!-- =================================================
+           EXPORT CLEAN
+      ================================================== -->
+
+      <button
+        id="exportCleanBtn"
+        class="primary"
+        type="button"
+      >
+        تصدير البيانات النهائية
+      </button>
+
+
+      <!-- =================================================
+           FILE INPUT
+           
+           Supports:
+           - JSON
+           - JavaScript Dataset
+      ================================================== -->
+
+      <input
+        id="fileInput"
+        type="file"
+        accept=".json,.js,application/json,text/javascript,application/javascript"
+        hidden
+      >
+
+    </div>
+
+  </header>
+
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+  <main class="container">
+
+    <!-- ===================================================
+         STATISTICS
+    ==================================================== -->
+
+    <section class="stats-grid">
+
+      <div class="stat">
+
+        <span>
+          إجمالي العناصر
+        </span>
+
+        <strong id="totalStat">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="stat">
+
+        <span>
+          تمت مراجعتها
+        </span>
+
+        <strong id="reviewedStat">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="stat">
+
+        <span>
+          صحيحة
+        </span>
+
+        <strong id="correctStat">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="stat">
+
+        <span>
+          خاطئة
+        </span>
+
+        <strong id="incorrectStat">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="stat">
+
+        <span>
+          متبقي
+        </span>
+
+        <strong id="remainingStat">
+          0
+        </strong>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         SEARCH / FILTER TOOLBAR
+    ==================================================== -->
+
+    <section class="toolbar card">
+
+      <!-- =================================================
+           SEARCH
+      ================================================== -->
+
+      <div class="field grow">
+
+        <label for="searchInput">
+          البحث
+        </label>
+
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="ابحث بالاسم أو Slug أو أي قيمة داخل العنصر..."
+          autocomplete="off"
+        >
+
+      </div>
+
+
+      <!-- =================================================
+           FILTER
+      ================================================== -->
+
+      <div class="field">
+
+        <label for="filterSelect">
+          حالة المراجعة
+        </label>
+
+        <select id="filterSelect">
+
+          <option value="ALL">
+            كل العناصر
+          </option>
+
+          <option value="UNREVIEWED">
+            لم تتم المراجعة
+          </option>
+
+          <option value="CORRECT">
+            صحيحة
+          </option>
+
+          <option value="INCORRECT">
+            خاطئة
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- =================================================
+           GOTO
+      ================================================== -->
+
+      <div class="field goto">
+
+        <label for="gotoInput">
+          الانتقال إلى عنصر
+        </label>
+
+        <div class="inline">
+
+          <input
+            id="gotoInput"
+            type="number"
+            min="1"
+            placeholder="رقم العنصر"
+          >
+
+          <button
+            id="gotoBtn"
+            class="secondary"
+            type="button"
+          >
+            انتقال
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         CURRENT ITEM
+    ==================================================== -->
+
+    <section class="card item-card">
+
+      <!-- =================================================
+           ITEM HEADER
+      ================================================== -->
+
+      <div class="item-head">
+
+        <div class="item-meta">
+
+          <span
+            id="itemPosition"
+            class="badge"
+          >
+            1 / 0
+          </span>
+
+
+          <span
+            id="itemStatus"
+            class="badge neutral"
+          >
+            غير مراجع
+          </span>
+
+        </div>
+
+
+        <div
+          id="datasetName"
+          class="dataset-name"
+        ></div>
+
+      </div>
+
+
+      <!-- =================================================
+           ITEM EDITOR
+      ================================================== -->
+
+      <div
+        id="itemEditor"
+        class="editor"
+      ></div>
+
+
+      <!-- =================================================
+           REVIEW BOX
+      ================================================== -->
+
+      <div class="review-box">
+
+        <div class="review-title">
+          قرار المراجعة
+        </div>
+
+
+        <div class="review-buttons">
+
+          <!-- CORRECT -->
+
+          <button
+            id="correctBtn"
+            class="correct"
+            type="button"
+          >
+            ✓ صحيح
+          </button>
+
+
+          <!-- INCORRECT -->
+
+          <button
+            id="incorrectBtn"
+            class="incorrect"
+            type="button"
+          >
+            ✕ خطأ
+          </button>
+
+
+          <!-- CLEAR -->
+
+          <button
+            id="clearReviewBtn"
+            class="secondary"
+            type="button"
+          >
+            مسح القرار
+          </button>
+
+        </div>
+
+
+        <!-- NOTES -->
+
+        <label for="notesInput">
+          ملاحظات المراجعة
+        </label>
+
+        <textarea
+          id="notesInput"
+          rows="4"
+          placeholder="اكتب سبب الخطأ أو أي ملاحظة على العنصر..."
+        ></textarea>
+
+      </div>
+
+
+      <!-- =================================================
+           NAVIGATION
+      ================================================== -->
+
+      <div class="navigation">
+
+        <!-- FIRST -->
+
+        <button
+          id="firstBtn"
+          class="secondary"
+          type="button"
+        >
+          الأول
+        </button>
+
+
+        <!-- PREVIOUS -->
+
+        <button
+          id="prevBtn"
+          class="secondary"
+          type="button"
+        >
+          السابق
+        </button>
+
+
+        <!-- DONE -->
+
+        <button
+          id="doneBtn"
+          class="primary done-button"
+          type="button"
+        >
+          ✓ حفظ وانتقال للتالي
+        </button>
+
+
+        <!-- NEXT -->
+
+        <button
+          id="nextBtn"
+          class="secondary"
+          type="button"
+        >
+          التالي
+        </button>
+
+
+        <!-- LAST -->
+
+        <button
+          id="lastBtn"
+          class="secondary"
+          type="button"
+        >
+          الأخير
+        </button>
+
+      </div>
+
+
+      <!-- =================================================
+           SAVE MESSAGE
+      ================================================== -->
+
+      <div
+        id="saveMessage"
+        class="save-message"
+        aria-live="polite"
+      ></div>
+
+    </section>
+
+
+    <!-- ===================================================
+         HELP
+    ==================================================== -->
+
+    <section class="card help">
+
+      <h2>
+        طريقة الاستخدام
+      </h2>
+
+
+      <ol>
+
+        <li>
+          راجع العنصر الحالي وعدّل أي قيمة تحتاج إلى تصحيح.
+        </li>
+
+
+        <li>
+          في حالة وجود Array يمكنك إضافة أو حذف العناصر وتعديل قيمها مباشرة.
+        </li>
+
+
+        <li>
+          اختر <b>صحيح</b> أو <b>خطأ</b> واكتب ملاحظات المراجعة إن وجدت.
+        </li>
+
+
+        <li>
+          اضغط
+          <b>حفظ وانتقال للتالي</b>
+          لحفظ التعديلات والمراجعة والانتقال تلقائيًا للعنصر التالي.
+        </li>
+
+
+        <li>
+          استخدم
+          <b>تصدير المراجعة</b>
+          للاحتفاظ بالداتا مع سجل المراجعة.
+        </li>
+
+
+        <li>
+          استخدم
+          <b>تصدير البيانات النهائية</b>
+          للحصول على البيانات بدون حقول المراجعة، لتكون جاهزة للإدخال في قاعدة البيانات.
+        </li>
+
+
+        <li>
+          استخدم
+          <b>استيراد بيانات</b>
+          لإضافة Dataset جديد بصيغة
+          <b>JSON</b>
+          أو
+          <b>JavaScript</b>
+          بدون حذف البيانات الموجودة.
+        </li>
+
+
+        <li>
+          عند استيراد Dataset جديد، يتم منع التكرار تلقائيًا باستخدام
+          <b>slug</b>.
+        </li>
+
+      </ol>
+
+
+      <p class="warning">
+
+        مهم: البيانات المحفوظة في localStorage مرتبطة بهذا المتصفح والجهاز.
+        يُفضل عمل تصدير دوري كنسخة احتياطية.
+
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       SCRIPTS
+  ====================================================== -->
+
+  <!-- BASE DATASET -->
+
+  <script src="data/granite-part-4.js"></script>
+
+
+  <!-- REVIEW TOOL -->
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>
