@@ -1,63 +1,64 @@
-export const egyptianGraniteMaterials= [
+
+export const egyptianGraniteMaterials = [
   {
     nameAr: "سارباجانتا إمبريال",
     nameEn: "Sarabajante Imperial",
     slug: "sarabajante-imperial",
 
-    category: "MARBLE",
-    materialClass: "NATURAL_STONE",
+    category: "رخام",
+    materialClass: "حجر طبيعي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "El Maghara, North Sinai",
+    originType: "مصري",
+    country: "مصر",
+    region: "المغارة، شمال سيناء",
 
-    color: "Beige / Brown / Golden",
+    color: "بيج / بني / ذهبي",
 
     description:
-      "A decorative Egyptian natural stone commercially marketed under Sarabajante and Imperial names, characterized by warm beige to brown tones and natural movement.",
+      "حجر طبيعي مصري زخرفي يتم تداوله تجاريًا تحت اسمي سارباجانتا وإمبريال، ويتميز بدرجات دافئة من البيج والبني والذهبي مع حركة وتنوع طبيعي في الشكل.",
 
     advantages: [
-      "Distinctive decorative appearance",
-      "Warm natural color palette",
-      "Suitable for feature walls",
-      "Suitable for flooring and stairs",
-      "Works well in classical and luxury interiors"
+      "مظهر زخرفي مميز",
+      "ألوان طبيعية دافئة",
+      "مناسب لجدران الواجهات والحوائط المميزة",
+      "مناسب للأرضيات والسلالم",
+      "يتناسب مع التصميمات الكلاسيكية والفاخرة"
     ],
 
     disadvantages: [
-      "Strong natural variation",
-      "Slab matching may be required",
-      "Acid-sensitive depending on stone composition",
-      "Not ideal where a perfectly uniform surface is required"
+      "تفاوت طبيعي واضح في اللون والنقوش",
+      "قد يتطلب تنسيق الألواح قبل التركيب",
+      "حساس للأحماض حسب التركيب المعدني للحجر",
+      "غير مناسب للأماكن التي تتطلب سطحًا متجانسًا تمامًا"
     ],
 
     commonUses: [
-      "Feature Walls",
-      "Flooring",
-      "Stairs",
-      "Hotel Interiors",
-      "Villas",
-      "Decorative Panels"
+      "حوائط مميزة",
+      "أرضيات",
+      "سلالم",
+      "ديكورات الفنادق",
+      "الفيلات",
+      "ألواح زخرفية"
     ],
 
     aliases: [
-      "Sarabajanta",
-      "Sarabajante",
-      "Imperial",
-      "Imperial Marble",
-      "Sarabajante Imperial",
+      "سارباجانتا",
+      "ساراباجانتا",
+      "إمبريال",
+      "رخام إمبريال",
+      "سارباجانتا إمبريال",
       "سارباجانتا",
       "ساراباجانتا",
       "إمبريال"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -65,58 +66,58 @@ export const egyptianGraniteMaterials= [
     nameEn: "Egyptian Serpeggiante",
     slug: "egyptian-serpeggiante",
 
-    category: "MARBLE",
-    materialClass: "NATURAL_STONE",
+    category: "رخام",
+    materialClass: "حجر طبيعي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Egypt",
+    originType: "مصري",
+    country: "مصر",
+    region: "مصر",
 
-    color: "Beige / Cream / Brown",
+    color: "بيج / كريمي / بني",
 
     description:
-      "Egyptian commercially traded stone known for directional linear veining and a flowing layered appearance.",
+      "حجر مصري يتم تداوله تجاريًا ويتميز بعروق خطية اتجاهية ومظهر طبقي متدفق يعطي سطحًا زخرفيًا مميزًا.",
 
     advantages: [
-      "Strong linear visual character",
-      "Suitable for feature walls",
-      "Suitable for long corridors",
-      "Can be installed to emphasize horizontal or vertical movement",
-      "Suitable for decorative architectural applications"
+      "طابع بصري خطي ومميز",
+      "مناسب للحوائط المميزة",
+      "مناسب للممرات الطويلة",
+      "يمكن تركيبه لإبراز الحركة الأفقية أو الرأسية للعروق",
+      "مناسب للتطبيقات المعمارية والزخرفية"
     ],
 
     disadvantages: [
-      "Directional pattern requires careful installation",
-      "Natural variation between slabs",
-      "Veins may not match perfectly",
-      "Requires appropriate maintenance"
+      "النقوش الاتجاهية تتطلب تركيبًا دقيقًا",
+      "تفاوت طبيعي بين الألواح",
+      "قد لا تتطابق العروق بشكل كامل",
+      "يحتاج إلى الصيانة المناسبة"
     ],
 
     commonUses: [
-      "Feature Walls",
-      "Wall Cladding",
-      "Flooring",
-      "Corridors",
-      "Stairs",
-      "Hotel Interiors"
+      "حوائط مميزة",
+      "تكسية الحوائط",
+      "أرضيات",
+      "ممرات",
+      "سلالم",
+      "ديكورات الفنادق"
     ],
 
     aliases: [
-      "Serpeggiante",
-      "Serpiggiante",
-      "Desert Marble",
-      "Egyptian Serpeggiante",
+      "سيربيجيانت",
+      "سيربيجيانت",
+      "رخام الصحراء",
+      "سيربيجيانت المصري",
       "سيربيجيانت",
       "سيربجانت"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -124,60 +125,60 @@ export const egyptianGraniteMaterials= [
     nameEn: "Sunny Cleopatra",
     slug: "sunny-cleopatra",
 
-    category: "MARBLE",
-    materialClass: "NATURAL_STONE",
+    category: "رخام",
+    materialClass: "حجر طبيعي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Egypt",
+    originType: "مصري",
+    country: "مصر",
+    region: "مصر",
 
-    color: "Golden Beige / Warm Beige",
+    color: "بيج ذهبي / بيج دافئ",
 
     description:
-      "A commercial Egyptian Sunny variety marketed as Sunny Cleopatra, with warm beige and golden tones.",
+      "أحد أنواع الصني المصري المتداولة تجاريًا باسم صني كليوباترا، ويتميز بدرجات البيج الدافئة والذهبية.",
 
     advantages: [
-      "Warm Egyptian appearance",
-      "Suitable for large flooring areas",
-      "Suitable for stairs",
-      "Suitable for facades and outdoor paving",
-      "Works well in traditional architectural designs"
+      "مظهر مصري دافئ",
+      "مناسب للمساحات الكبيرة من الأرضيات",
+      "مناسب للسلالم",
+      "مناسب للواجهات والرصف الخارجي",
+      "يتناسب مع التصميمات المعمارية التقليدية"
     ],
 
     disadvantages: [
-      "Natural color variation",
-      "Requires batch selection for consistent projects",
-      "Acid-sensitive",
-      "Surface appearance depends on finishing method"
+      "تفاوت طبيعي في اللون",
+      "يتطلب اختيار دفعات متقاربة اللون للمشروعات الكبيرة",
+      "حساس للأحماض",
+      "مظهر السطح يعتمد على طريقة التشطيب"
     ],
 
     commonUses: [
-      "Flooring",
-      "Stairs",
-      "Facades",
-      "Outdoor Paving",
-      "Garden Paths",
-      "Villas",
-      "Resorts"
+      "أرضيات",
+      "سلالم",
+      "واجهات",
+      "رصف خارجي",
+      "ممرات حدائق",
+      "فيلات",
+      "منتجعات"
     ],
 
     aliases: [
-      "Sunny Cleopatra",
-      "Cleopatra Sunny",
-      "Sunny Cleopatra Marble",
+      "صني كليوباترا",
+      "كليوباترا صني",
+      "رخام صني كليوباترا",
       "صني كليوباترا",
       "كليوباترا صني"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED",
-      "SAW_CUT",
-      "SANDBLASTED"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة",
+      "منشار",
+      "رملي"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -185,59 +186,59 @@ export const egyptianGraniteMaterials= [
     nameEn: "Golden Sinai",
     slug: "golden-sinai",
 
-    category: "MARBLE",
-    materialClass: "NATURAL_STONE",
+    category: "رخام",
+    materialClass: "حجر طبيعي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Wadi Feiran, South Sinai",
+    originType: "مصري",
+    country: "مصر",
+    region: "وادي فيران، جنوب سيناء",
 
-    color: "Golden Beige / Yellow Beige",
+    color: "بيج ذهبي / بيج مصفر",
 
     description:
-      "Egyptian decorative natural stone commercially known as Golden Sinai, associated with the South Sinai region and warm golden tones.",
+      "حجر طبيعي مصري زخرفي معروف تجاريًا باسم جولدن سينا، ويرتبط بمنطقة جنوب سيناء ويتميز بدرجات ذهبية دافئة.",
 
     advantages: [
-      "Warm golden appearance",
-      "Distinctive Egyptian character",
-      "Suitable for architectural flooring",
-      "Suitable for wall cladding",
-      "Works well in classical and Mediterranean designs"
+      "مظهر ذهبي دافئ",
+      "طابع مصري مميز",
+      "مناسب للأرضيات المعمارية",
+      "مناسب لتكسية الحوائط",
+      "يتناسب مع التصميمات الكلاسيكية والمتوسطية"
     ],
 
     disadvantages: [
-      "Natural variation in tone",
-      "Requires careful slab selection",
-      "Acid-sensitive",
-      "May show differences between quarry blocks"
+      "تفاوت طبيعي في درجات اللون",
+      "يتطلب اختيار الألواح بعناية",
+      "حساس للأحماض",
+      "قد تظهر اختلافات بين كتل المحجر"
     ],
 
     commonUses: [
-      "Flooring",
-      "Wall Cladding",
-      "Stairs",
-      "Facades",
-      "Villas",
-      "Hotels",
-      "Resorts"
+      "أرضيات",
+      "تكسية الحوائط",
+      "سلالم",
+      "واجهات",
+      "فيلات",
+      "فنادق",
+      "منتجعات"
     ],
 
     aliases: [
-      "Golden Sinai",
-      "Golden Sinia",
-      "Golden Sinai Marble",
+      "جولدن سينا",
+      "جولدن سيناء",
+      "رخام جولدن سينا",
       "جولدن سينا",
       "جولدن سيناء"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED",
-      "SAW_CUT"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة",
+      "منشار"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -245,60 +246,60 @@ export const egyptianGraniteMaterials= [
     nameEn: "Desert",
     slug: "desert-egyptian",
 
-    category: "MARBLE",
-    materialClass: "NATURAL_STONE",
+    category: "رخام",
+    materialClass: "حجر طبيعي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "El Quseir, Red Sea",
+    originType: "مصري",
+    country: "مصر",
+    region: "القصير، البحر الأحمر",
 
-    color: "Brown / Beige / Earth Tones",
+    color: "بني / بيج / ألوان ترابية",
 
     description:
-      "Egyptian natural stone commercially known as Desert or Sahara Brown, with earthy brown and beige tones.",
+      "حجر طبيعي مصري معروف تجاريًا باسم ديزرت أو صحرا براون، ويتميز بدرجات بنية وبيج ذات طابع ترابي.",
 
     advantages: [
-      "Natural earthy appearance",
-      "Suitable for warm interior designs",
-      "Suitable for flooring and wall applications",
-      "Works well with rustic and Mediterranean styles"
+      "مظهر طبيعي ترابي",
+      "مناسب للتصميمات الداخلية الدافئة",
+      "مناسب للأرضيات والحوائط",
+      "يتناسب مع الطرز الريفية والمتوسطية"
     ],
 
     disadvantages: [
-      "Darker tones may show dust",
-      "Natural variation",
-      "Requires careful selection for color consistency",
-      "Acid-sensitive"
+      "الألوان الداكنة قد تُظهر الأتربة",
+      "تفاوت طبيعي في اللون والنقوش",
+      "يتطلب اختيارًا دقيقًا للحفاظ على تجانس اللون",
+      "حساس للأحماض"
     ],
 
     commonUses: [
-      "Flooring",
-      "Wall Cladding",
-      "Stairs",
-      "Facades",
-      "Landscape Applications",
-      "Villas",
-      "Hotels"
+      "أرضيات",
+      "تكسية الحوائط",
+      "سلالم",
+      "واجهات",
+      "تطبيقات تنسيق المواقع",
+      "فيلات",
+      "فنادق"
     ],
 
     aliases: [
-      "Desert Marble",
-      "Sahara Brown",
-      "Desert Brown",
-      "Desert Stone",
+      "رخام ديزرت",
+      "صحرا براون",
+      "ديزرت براون",
+      "حجر ديزرت",
       "ديزرت",
       "صحراوي",
       "صحرا براون"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED",
-      "SAW_CUT"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة",
+      "منشار"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -306,58 +307,58 @@ export const egyptianGraniteMaterials= [
     nameEn: "Egyptian Rosa",
     slug: "egyptian-rosa",
 
-    category: "MARBLE",
-    materialClass: "NATURAL_STONE",
+    category: "رخام",
+    materialClass: "حجر طبيعي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "New Valley",
+    originType: "مصري",
+    country: "مصر",
+    region: "الوادي الجديد",
 
-    color: "Pink / Rose / Beige",
+    color: "وردي / روز / بيج",
 
     description:
-      "Egyptian pink-toned natural stone commercially associated with Rosa or Alba Rosa varieties.",
+      "حجر طبيعي مصري وردي اللون يتم تداوله تجاريًا تحت أسماء روزا أو ألبا روزا، ويتميز بدرجات وردية وبيج مميزة.",
 
     advantages: [
-      "Distinctive pink appearance",
-      "Suitable for decorative interiors",
-      "Suitable for flooring and wall applications",
-      "Provides contrast against neutral materials"
+      "مظهر وردي مميز",
+      "مناسب للتصميمات الداخلية الزخرفية",
+      "مناسب للأرضيات والحوائط",
+      "يوفر تباينًا جماليًا مع الخامات المحايدة"
     ],
 
     disadvantages: [
-      "Less neutral than beige marble",
-      "Natural color variation",
-      "Requires careful matching",
-      "Acid-sensitive"
+      "أقل حيادية من الرخام البيج",
+      "تفاوت طبيعي في اللون",
+      "يتطلب تنسيقًا دقيقًا بين الألواح",
+      "حساس للأحماض"
     ],
 
     commonUses: [
-      "Flooring",
-      "Feature Walls",
-      "Stairs",
-      "Decorative Panels",
-      "Villas",
-      "Hotels"
+      "أرضيات",
+      "حوائط مميزة",
+      "سلالم",
+      "ألواح زخرفية",
+      "فيلات",
+      "فنادق"
     ],
 
     aliases: [
-      "Rosa",
-      "Alba Rosa",
-      "Rosa Egyptian",
-      "Egyptian Rosa",
+      "روزا",
+      "ألبا روزا",
+      "روزا مصري",
+      "روزا المصري",
       "روزا",
       "ألبا روزا",
       "روزا مصري"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -365,57 +366,57 @@ export const egyptianGraniteMaterials= [
     nameEn: "New Silvia",
     slug: "new-silvia",
 
-    category: "MARBLE",
-    materialClass: "NATURAL_STONE",
+    category: "رخام",
+    materialClass: "حجر طبيعي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Egypt",
+    originType: "مصري",
+    country: "مصر",
+    region: "مصر",
 
-    color: "Light Beige / Cream",
+    color: "بيج فاتح / كريمي",
 
     description:
-      "A commercial Egyptian Silvia variant marketed as New Silvia, generally characterized by light beige to cream tones.",
+      "نوع تجاري مصري من السيلفيا يتم تسويقه باسم سيلفيا الجديدة، ويتميز عادةً بدرجات البيج الفاتح إلى الكريمي.",
 
     advantages: [
-      "Light neutral appearance",
-      "Suitable for large projects",
-      "Suitable for flooring and wall cladding",
-      "Works well in contemporary interiors"
+      "مظهر فاتح ومحايد",
+      "مناسب للمشروعات الكبيرة",
+      "مناسب للأرضيات وتكسية الحوائط",
+      "يتناسب مع التصميمات الداخلية العصرية"
     ],
 
     disadvantages: [
-      "Commercial grading may vary",
-      "Natural variation between blocks",
-      "Requires proper slab selection",
-      "Acid-sensitive"
+      "قد تختلف درجات الجودة التجارية",
+      "تفاوت طبيعي بين الكتل",
+      "يتطلب اختيار الألواح المناسبة",
+      "حساس للأحماض"
     ],
 
     commonUses: [
-      "Flooring",
-      "Wall Cladding",
-      "Stairs",
-      "Hotels",
-      "Villas",
-      "Commercial Buildings"
+      "أرضيات",
+      "تكسية الحوائط",
+      "سلالم",
+      "فنادق",
+      "فيلات",
+      "مبانٍ تجارية"
     ],
 
     aliases: [
-      "New Silvia",
-      "New Selvia",
-      "Silvia New",
+      "سيلفيا الجديدة",
+      "نيو سيلفيا",
+      "سيلفيا جديدة",
       "سيلفيا الجديدة",
       "نيو سيلفيا"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED",
-      "SAW_CUT"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة",
+      "منشار"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -423,57 +424,57 @@ export const egyptianGraniteMaterials= [
     nameEn: "Perlato",
     slug: "perlato-egyptian",
 
-    category: "MARBLE",
-    materialClass: "CALCIC_STONE",
+    category: "رخام",
+    materialClass: "حجر كلسي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Egypt",
+    originType: "مصري",
+    country: "مصر",
+    region: "مصر",
 
-    color: "Cream / Beige / Light Yellow",
+    color: "كريمي / بيج / أصفر فاتح",
 
     description:
-      "Egyptian calcic natural stone commercially marketed as Perlato, available in light cream and beige tones.",
+      "حجر طبيعي مصري كلسي يتم تسويقه تجاريًا باسم بيرلاتو، ويتوفر بدرجات فاتحة من الكريمي والبيج والأصفر.",
 
     advantages: [
-      "Light neutral appearance",
-      "Suitable for flooring",
-      "Suitable for wall cladding",
-      "Works well in classical interiors",
-      "Suitable for large architectural projects"
+      "مظهر فاتح ومحايد",
+      "مناسب للأرضيات",
+      "مناسب لتكسية الحوائط",
+      "يتناسب مع التصميمات الداخلية الكلاسيكية",
+      "مناسب للمشروعات المعمارية الكبيرة"
     ],
 
     disadvantages: [
-      "Natural variation",
-      "Can be sensitive to acids",
-      "Requires suitable sealing and maintenance depending on application",
-      "Commercial name may represent different grades"
+      "تفاوت طبيعي في اللون والنقوش",
+      "قد يكون حساسًا للأحماض",
+      "يحتاج إلى عزل وصيانة مناسبة حسب الاستخدام",
+      "قد يشير الاسم التجاري إلى درجات مختلفة"
     ],
 
     commonUses: [
-      "Flooring",
-      "Wall Cladding",
-      "Stairs",
-      "Facades",
-      "Villas",
-      "Hotels"
+      "أرضيات",
+      "تكسية الحوائط",
+      "سلالم",
+      "واجهات",
+      "فيلات",
+      "فنادق"
     ],
 
     aliases: [
-      "Perlato",
-      "Perlato Egyptian",
+      "بيرلاتو",
+      "بيرلاتو مصري",
       "بيرلاتو",
       "برلاتو"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED",
-      "SAW_CUT"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة",
+      "منشار"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -481,53 +482,53 @@ export const egyptianGraniteMaterials= [
     nameEn: "Marulla",
     slug: "marulla",
 
-    category: "MARBLE",
-    materialClass: "NATURAL_STONE",
+    category: "رخام",
+    materialClass: "حجر طبيعي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Egypt",
+    originType: "مصري",
+    country: "مصر",
+    region: "مصر",
 
-    color: "Beige / Cream",
+    color: "بيج / كريمي",
 
     description:
-      "An Egyptian commercial natural stone name appearing in local marble classifications and trade references.",
+      "اسم تجاري لحجر طبيعي مصري يظهر ضمن بعض التصنيفات المحلية والتداولات التجارية لخامات الرخام المصري.",
 
     advantages: [
-      "Neutral warm appearance",
-      "Suitable for interior applications",
-      "Suitable for flooring and wall cladding",
-      "Can be used in decorative architectural work"
+      "مظهر دافئ ومحايد",
+      "مناسب للاستخدامات الداخلية",
+      "مناسب للأرضيات وتكسية الحوائط",
+      "يمكن استخدامه في الأعمال المعمارية والزخرفية"
     ],
 
     disadvantages: [
-      "Limited standardized information under one commercial name",
-      "Natural variation",
-      "Requires supplier and quarry verification",
-      "Acid-sensitive if calcitic"
+      "المعلومات القياسية تحت الاسم التجاري محدودة",
+      "تفاوت طبيعي في الخامة",
+      "يتطلب التحقق من المورد والمحجر",
+      "قد يكون حساسًا للأحماض إذا كان كلسيًا"
     ],
 
     commonUses: [
-      "Flooring",
-      "Wall Cladding",
-      "Stairs",
-      "Decorative Applications"
+      "أرضيات",
+      "تكسية الحوائط",
+      "سلالم",
+      "تطبيقات زخرفية"
     ],
 
     aliases: [
-      "Marulla",
-      "Marula",
+      "ماريولا",
+      "مارولا",
       "ماريولا",
       "مارولا"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -535,53 +536,53 @@ export const egyptianGraniteMaterials= [
     nameEn: "Saolta",
     slug: "saolta",
 
-    category: "MARBLE",
-    materialClass: "NATURAL_STONE",
+    category: "رخام",
+    materialClass: "حجر طبيعي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Egypt",
+    originType: "مصري",
+    country: "مصر",
+    region: "مصر",
 
-    color: "Beige / Earth Tones",
+    color: "بيج / ألوان ترابية",
 
     description:
-      "An Egyptian commercial natural stone name included in traditional classifications of Egyptian marble varieties.",
+      "اسم تجاري لحجر طبيعي مصري يرد ضمن التصنيفات التقليدية لبعض أنواع الرخام المصري والتداولات التجارية المحلية.",
 
     advantages: [
-      "Natural warm appearance",
-      "Suitable for architectural applications",
-      "Suitable for flooring and cladding",
-      "Can be used in traditional designs"
+      "مظهر طبيعي دافئ",
+      "مناسب للتطبيقات المعمارية",
+      "مناسب للأرضيات والتكسية",
+      "يمكن استخدامه في التصميمات التقليدية"
     ],
 
     disadvantages: [
-      "Commercial information is less standardized",
-      "Natural variation",
-      "Requires supplier verification",
-      "Acid sensitivity depends on mineral composition"
+      "المعلومات التجارية أقل توحيدًا",
+      "تفاوت طبيعي في الخامة",
+      "يتطلب التحقق من المورد",
+      "تتوقف حساسية الأحماض على التركيب المعدني"
     ],
 
     commonUses: [
-      "Flooring",
-      "Wall Cladding",
-      "Stairs",
-      "Traditional Architecture"
+      "أرضيات",
+      "تكسية الحوائط",
+      "سلالم",
+      "العمارة التقليدية"
     ],
 
     aliases: [
-      "Saolta",
-      "Saolta Marble",
       "ساقلتة",
-      "ساقلتة رخام"
+      "رخام ساقلتة",
+      "ساقلتة",
+      "رخام ساقلتة"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -589,53 +590,53 @@ export const egyptianGraniteMaterials= [
     nameEn: "Novoleto",
     slug: "novoleto",
 
-    category: "MARBLE",
-    materialClass: "NATURAL_STONE",
+    category: "رخام",
+    materialClass: "حجر طبيعي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Egypt",
+    originType: "مصري",
+    country: "مصر",
+    region: "مصر",
 
-    color: "Beige / Cream",
+    color: "بيج / كريمي",
 
     description:
-      "An Egyptian commercial natural stone name appearing in Egyptian marble trade classifications.",
+      "اسم تجاري لحجر طبيعي مصري يظهر ضمن تصنيفات وتداولات أنواع الرخام المصري.",
 
     advantages: [
-      "Neutral appearance",
-      "Suitable for interior architectural applications",
-      "Suitable for flooring and wall cladding",
-      "Works with traditional and contemporary designs"
+      "مظهر محايد",
+      "مناسب للتطبيقات المعمارية الداخلية",
+      "مناسب للأرضيات وتكسية الحوائط",
+      "يتناسب مع التصميمات التقليدية والعصرية"
     ],
 
     disadvantages: [
-      "Commercial classification is not fully standardized",
-      "Natural variation",
-      "Requires supplier verification",
-      "Acid-sensitive if calcitic"
+      "التصنيف التجاري غير موحد بشكل كامل",
+      "تفاوت طبيعي في الخامة",
+      "يتطلب التحقق من المورد",
+      "قد يكون حساسًا للأحماض إذا كان كلسيًا"
     ],
 
     commonUses: [
-      "Flooring",
-      "Wall Cladding",
-      "Stairs",
-      "Decorative Applications"
+      "أرضيات",
+      "تكسية الحوائط",
+      "سلالم",
+      "تطبيقات زخرفية"
     ],
 
     aliases: [
-      "Novoleto",
-      "Novaleto",
+      "نوفوليتو",
+      "نوفاليتو",
       "نوفوليتو",
       "نوفوليتو مصري"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -643,53 +644,53 @@ export const egyptianGraniteMaterials= [
     nameEn: "Seselia",
     slug: "seselia",
 
-    category: "MARBLE",
-    materialClass: "NATURAL_STONE",
+    category: "رخام",
+    materialClass: "حجر طبيعي",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Egypt",
+    originType: "مصري",
+    country: "مصر",
+    region: "مصر",
 
-    color: "Beige / Cream",
+    color: "بيج / كريمي",
 
     description:
-      "An Egyptian commercial stone name included in Egyptian marble classifications and trade references.",
+      "اسم تجاري لحجر مصري يرد ضمن بعض تصنيفات وتداولات الرخام المصري.",
 
     advantages: [
-      "Neutral color palette",
-      "Suitable for interior applications",
-      "Suitable for flooring and cladding",
-      "Can be used in decorative architectural work"
+      "ألوان محايدة",
+      "مناسب للاستخدامات الداخلية",
+      "مناسب للأرضيات والتكسية",
+      "يمكن استخدامه في الأعمال المعمارية والزخرفية"
     ],
 
     disadvantages: [
-      "Limited standardized technical information under the commercial name",
-      "Natural variation",
-      "Supplier verification is recommended",
-      "Acid sensitivity depends on composition"
+      "المعلومات الفنية القياسية تحت الاسم التجاري محدودة",
+      "تفاوت طبيعي في الخامة",
+      "يوصى بالتحقق من المورد",
+      "تتوقف حساسية الأحماض على التركيب المعدني"
     ],
 
     commonUses: [
-      "Flooring",
-      "Wall Cladding",
-      "Stairs",
-      "Decorative Interiors"
+      "أرضيات",
+      "تكسية الحوائط",
+      "سلالم",
+      "ديكورات داخلية"
     ],
 
     aliases: [
-      "Seselia",
-      "Cecilia",
+      "سيسليا",
+      "سيشيليا",
       "سيسليا",
       "سيسيليا"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED",
-      "BRUSHED"
+      "مصقول",
+      "مطفي",
+      "مفرش بالفرشاة"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -697,57 +698,57 @@ export const egyptianGraniteMaterials= [
     nameEn: "Egyptian White Carrara",
     slug: "egyptian-white-carrara",
 
-    category: "MARBLE",
-    materialClass: "MARBLE",
+    category: "رخام",
+    materialClass: "رخام",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Wadi Al Alaqi / Wadi Al Miyah",
+    originType: "مصري",
+    country: "مصر",
+    region: "وادي العلاقي / وادي المياه",
 
-    color: "White with Black and Red Veins",
+    color: "أبيض مع عروق سوداء وحمراء",
 
     description:
-      "Egyptian white marble commercially referred to as White Carrara, with a white background and natural black and red veining.",
+      "رخام أبيض مصري يتم تداوله تجاريًا باسم وايت كارارا، ويتميز بخلفية بيضاء مع عروق طبيعية سوداء وحمراء.",
 
     advantages: [
-      "Bright white appearance",
-      "Distinctive natural veining",
-      "Suitable for decorative interiors",
-      "Suitable for flooring and wall applications",
-      "Can provide a premium visual appearance"
+      "مظهر أبيض ومشرق",
+      "عروق طبيعية مميزة",
+      "مناسب للتصميمات الداخلية الزخرفية",
+      "مناسب للأرضيات والحوائط",
+      "يمكن أن يعطي مظهرًا فاخرًا ومميزًا"
     ],
 
     disadvantages: [
-      "Natural variation in veining",
-      "Light color can show stains",
-      "Sensitive to acids",
-      "Requires careful sealing and maintenance"
+      "تفاوت طبيعي في العروق",
+      "اللون الفاتح قد يُظهر البقع",
+      "حساس للأحماض",
+      "يحتاج إلى عزل وصيانة مناسبة"
     ],
 
     commonUses: [
-      "Flooring",
-      "Wall Cladding",
-      "Bathrooms",
-      "Feature Walls",
-      "Stairs",
-      "Luxury Interiors"
+      "أرضيات",
+      "تكسية الحوائط",
+      "حمامات",
+      "حوائط مميزة",
+      "سلالم",
+      "ديكورات فاخرة"
     ],
 
     aliases: [
-      "White Carrara Egypt",
-      "Egyptian Carrara",
-      "White Egyptian Marble",
-      "White Carrara",
+      "وايت كارارا مصر",
+      "كارارا مصري",
+      "رخام مصري أبيض",
+      "وايت كارارا",
       "وايت كارارا",
       "كارارا أبيض مصري"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED"
+      "مصقول",
+      "مطفي"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -755,57 +756,57 @@ export const egyptianGraniteMaterials= [
     nameEn: "Egyptian Black Carrara",
     slug: "egyptian-black-carrara",
 
-    category: "MARBLE",
-    materialClass: "MARBLE",
+    category: "رخام",
+    materialClass: "رخام",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Wadi Al Alaqi / North Al Baramia / Wadi Al Miyah",
+    originType: "مصري",
+    country: "مصر",
+    region: "وادي العلاقي / شمال البرامية / وادي المياه",
 
-    color: "Black with White Veins",
+    color: "أسود مع عروق بيضاء",
 
     description:
-      "Egyptian black marble commercially referred to as Black Carrara, characterized by a dark background with white natural veining.",
+      "رخام أسود مصري يتم تداوله تجاريًا باسم بلاك كارارا، ويتميز بخلفية داكنة مع عروق طبيعية بيضاء.",
 
     advantages: [
-      "Strong luxury appearance",
-      "Distinctive black and white contrast",
-      "Suitable for feature applications",
-      "Suitable for walls and floors",
-      "Works well in contemporary interiors"
+      "مظهر فاخر وقوي",
+      "تباين مميز بين الأسود والأبيض",
+      "مناسب للتطبيقات والحوائط المميزة",
+      "مناسب للحوائط والأرضيات",
+      "يتناسب مع التصميمات الداخلية العصرية"
     ],
 
     disadvantages: [
-      "Dark surface can show dust and fingerprints",
-      "Natural variation in veins",
-      "Requires careful cleaning",
-      "Acid-sensitive"
+      "السطح الداكن قد يُظهر الأتربة وبصمات الأصابع",
+      "تفاوت طبيعي في العروق",
+      "يحتاج إلى تنظيف دقيق",
+      "حساس للأحماض"
     ],
 
     commonUses: [
-      "Feature Walls",
-      "Flooring",
-      "Stairs",
-      "Reception Areas",
-      "Bathrooms",
-      "Luxury Interiors"
+      "حوائط مميزة",
+      "أرضيات",
+      "سلالم",
+      "مناطق الاستقبال",
+      "حمامات",
+      "ديكورات فاخرة"
     ],
 
     aliases: [
-      "Black Carrara Egypt",
-      "Egyptian Black Marble",
-      "Black Egyptian Marble",
-      "Black Carrara",
+      "بلاك كارارا مصر",
+      "رخام مصري أسود",
+      "رخام أسود مصري",
+      "بلاك كارارا",
       "بلاك كارارا",
       "كارارا أسود مصري"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED"
+      "مصقول",
+      "مطفي"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -813,56 +814,56 @@ export const egyptianGraniteMaterials= [
     nameEn: "Green Breccia",
     slug: "green-breccia-egyptian",
 
-    category: "MARBLE",
-    materialClass: "BRECCIA",
+    category: "رخام",
+    materialClass: "بريشيا",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Wadi El Hamamat / Gabal El Dokhan",
+    originType: "مصري",
+    country: "مصر",
+    region: "وادي الحمامات / جبل الدخان",
 
-    color: "Dark Green / Light Green",
+    color: "أخضر داكن / أخضر فاتح",
 
     description:
-      "Egyptian decorative green breccia natural stone with fragmented green mineral patterns.",
+      "بريشيا مصرية زخرفية خضراء تتميز بنقوش معدنية متكسرة وأشكال طبيعية متنوعة بدرجات اللون الأخضر.",
 
     advantages: [
-      "Highly decorative",
-      "Unique natural pattern",
-      "Suitable for feature walls",
-      "Suitable for luxury interiors",
-      "Creates strong visual contrast"
+      "زخرفية بدرجة عالية",
+      "نقوش طبيعية فريدة",
+      "مناسبة للحوائط المميزة",
+      "مناسبة للديكورات الداخلية الفاخرة",
+      "تخلق تباينًا بصريًا قويًا"
     ],
 
     disadvantages: [
-      "Very strong pattern",
-      "Slab matching is important",
-      "Natural variation is significant",
-      "Requires careful fabrication and installation"
+      "النقوش قوية وواضحة",
+      "تنسيق الألواح مهم جدًا",
+      "تفاوت طبيعي كبير",
+      "تحتاج إلى تصنيع وتركيب دقيقين"
     ],
 
     commonUses: [
-      "Feature Walls",
-      "Decorative Panels",
-      "Luxury Interiors",
-      "Reception Areas",
-      "Hotels",
-      "Villas"
+      "حوائط مميزة",
+      "ألواح زخرفية",
+      "ديكورات فاخرة",
+      "مناطق الاستقبال",
+      "فنادق",
+      "فيلات"
     ],
 
     aliases: [
-      "Green Brishia",
-      "Green Breccia",
-      "Breccia Verde Egypt",
+      "بريشيا خضراء",
+      "جرين بريشيا",
+      "بريشيا خضراء مصرية",
       "جرين بريشيا",
       "بريشيا خضراء"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED"
+      "مصقول",
+      "مطفي"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -870,55 +871,55 @@ export const egyptianGraniteMaterials= [
     nameEn: "Red Breccia",
     slug: "red-breccia-egyptian",
 
-    category: "MARBLE",
-    materialClass: "BRECCIA",
+    category: "رخام",
+    materialClass: "بريشيا",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Assiut / Sohag",
+    originType: "مصري",
+    country: "مصر",
+    region: "أسيوط / سوهاج",
 
-    color: "Dark Red / Light Red",
+    color: "أحمر داكن / أحمر فاتح",
 
     description:
-      "Egyptian decorative red breccia with naturally fragmented red mineral patterns.",
+      "بريشيا مصرية زخرفية حمراء تتميز بنقوش طبيعية متكسرة بدرجات اللون الأحمر.",
 
     advantages: [
-      "Strong decorative character",
-      "Distinctive red coloration",
-      "Suitable for feature applications",
-      "Suitable for luxury architectural interiors"
+      "طابع زخرفي قوي",
+      "لون أحمر مميز",
+      "مناسبة للتطبيقات والحوائط المميزة",
+      "مناسبة للديكورات المعمارية الداخلية الفاخرة"
     ],
 
     disadvantages: [
-      "Strong color and pattern",
-      "Natural variation between slabs",
-      "Requires careful slab matching",
-      "Not suitable for minimalist designs where uniformity is desired"
+      "اللون والنقوش قوية وواضحة",
+      "تفاوت طبيعي بين الألواح",
+      "تحتاج إلى تنسيق دقيق للألواح",
+      "غير مناسبة للتصميمات البسيطة التي تتطلب تجانسًا عاليًا"
     ],
 
     commonUses: [
-      "Feature Walls",
-      "Decorative Panels",
-      "Luxury Flooring",
-      "Hotels",
-      "Villas",
-      "Reception Areas"
+      "حوائط مميزة",
+      "ألواح زخرفية",
+      "أرضيات فاخرة",
+      "فنادق",
+      "فيلات",
+      "مناطق الاستقبال"
     ],
 
     aliases: [
-      "Red Brishia",
-      "Red Breccia",
-      "Breccia Rosso Egypt",
+      "بريشيا حمراء",
+      "ريد بريشيا",
+      "بريشيا حمراء مصرية",
       "ريد بريشيا",
       "بريشيا حمراء"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED"
+      "مصقول",
+      "مطفي"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   },
 
   {
@@ -926,56 +927,57 @@ export const egyptianGraniteMaterials= [
     nameEn: "Egyptian Alabaster",
     slug: "egyptian-alabaster",
 
-    category: "DECORATIVE_STONE",
-    materialClass: "ALABASTER",
+    category: "حجر زخرفي",
+    materialClass: "ألباستر",
 
-    originType: "EGYPTIAN",
-    country: "Egypt",
-    region: "Minya / Assiut / Beni Suef",
+    originType: "مصري",
+    country: "مصر",
+    region: "المنيا / أسيوط / بني سويف",
 
-    color: "Golden Yellow / White / Cream",
+    color: "أصفر ذهبي / أبيض / كريمي",
 
     description:
-      "Egyptian alabaster, a decorative stone traditionally extracted from Upper Egypt and known for translucent white, cream and golden-yellow tones.",
+      "الألباستر المصري هو حجر زخرفي يتم استخراجه تقليديًا من مناطق في صعيد مصر، ويتميز بدرجات الأبيض والكريمي والأصفر الذهبي مع قدرة مميزة على نفاذ الضوء.",
 
     advantages: [
-      "Distinctive translucent appearance",
-      "Highly decorative",
-      "Excellent for luxury decorative work",
-      "Can create attractive lighting effects",
-      "Strong historical Egyptian identity"
+      "مظهر مميز يسمح بنفاذ الضوء",
+      "قيمة زخرفية عالية",
+      "ممتاز للأعمال الديكورية الفاخرة",
+      "يمكن أن يعطي تأثيرات إضاءة جذابة",
+      "يرتبط بهوية مصرية تاريخية مميزة"
     ],
 
     disadvantages: [
-      "Softer and more delicate than granite",
-      "Not ideal for heavy traffic",
-      "Requires careful fabrication",
-      "Can scratch more easily than harder stones"
+      "أكثر نعومة وحساسية من الجرانيت",
+      "غير مناسب لحركة المرور الثقيلة",
+      "يحتاج إلى تصنيع دقيق",
+      "قد يتعرض للخدش بسهولة أكبر من الأحجار الأكثر صلابة"
     ],
 
     commonUses: [
-      "Decorative Panels",
-      "Sculpture",
-      "Lighting Features",
-      "Backlit Panels",
-      "Luxury Interiors",
-      "Decorative Objects"
+      "ألواح زخرفية",
+      "منحوتات",
+      "عناصر إضاءة",
+      "ألواح مضاءة من الخلف",
+      "ديكورات داخلية فاخرة",
+      "قطع وزخارف ديكورية"
     ],
 
     aliases: [
-      "Alabaster",
-      "Egyptian Alabaster",
-      "Egyptian Calcite Alabaster",
-      "Alalbastar",
+      "ألباستر",
+      "ألباستر مصري",
+      "ألباستر كلسي مصري",
+      "ألاباستر",
       "ألباستر",
       "مرمر مصري"
     ],
 
     availableFinishes: [
-      "POLISHED",
-      "HONED"
+      "مصقول",
+      "مطفي"
     ],
 
-    status: "ACTIVE"
+    status: "نشط"
   }
 ];
+
