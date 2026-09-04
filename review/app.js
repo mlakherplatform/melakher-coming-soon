@@ -1,19 +1,78 @@
-(() => {
-  const DATASET_ID = "granite-part-4";
-  const DATASET_NAME = "Egyptian Granite — Part 4";
-  const STORAGE_KEY = `material-review-tool:v2:${DATASET_ID}`;
 
-  let data = Array.isArray(window.egyptianGraniteMaterials)
-    ? window.egyptianGraniteMaterials
-    : [];
+(() => {
+
+  // =========================================================
+  // FIELD LABELS
+  // =========================================================
+
+  const FIELD_LABELS = {
+    nameAr: "الاسم بالعربي",
+    nameEn: "الاسم بالإنجليزي",
+    slug: "المعرّف",
+    commercialName: "الاسم التجاري",
+    stoneFamily: "عائلة الحجر",
+    category: "التصنيف",
+    materialClass: "فئة الخامة",
+    originType: "نوع المنشأ",
+    country: "الدولة",
+    region: "المنطقة",
+    color: "اللون",
+    description: "الوصف",
+    advantages: "المزايا",
+    disadvantages: "العيوب",
+    commonUses: "الاستخدامات الشائعة",
+    aliases: "الأسماء البديلة",
+    availableFinishes: "التشطيبات المتاحة",
+    status: "الحالة"
+  };
+
+  function getFieldLabel(key) {
+    return FIELD_LABELS[key] || key;
+  }
+
+  // =========================================================
+  // DATASET CONFIG
+  // =========================================================
+
+  const DATASET_ID = "granite-part-4";
+
+  const DATASET_NAME =
+    "Egyptian Granite — Part 4";
+
+  const DATA_FOLDER_FILE =
+    "./data/egyptianGraniteMaterials.js";
+
+  const STORAGE_KEY =
+    `material-review-tool:v2:${DATASET_ID}`;
+
+  // =========================================================
+  // DATA
+  // =========================================================
+
+  let data =
+    Array.isArray(window.egyptianGraniteMaterials)
+      ? window.egyptianGraniteMaterials
+      : [];
 
   let currentIndex = 0;
+
   let visibleIndexes = [];
 
-  const $ = id => document.getElementById(id);
+  // =========================================================
+  // DOM HELPER
+  // =========================================================
 
-  function clone(v) {
-    return JSON.parse(JSON.stringify(v));
+  const $ = id =>
+    document.getElementById(id);
+
+  // =========================================================
+  // CLONE
+  // =========================================================
+
+  function clone(value) {
+    return JSON.parse(
+      JSON.stringify(value)
+    );
   }
 
   // =========================================================
@@ -21,34 +80,61 @@
   // =========================================================
 
   function loadState() {
+
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
 
-      if (!raw) return;
+      const raw =
+        localStorage.getItem(
+          STORAGE_KEY
+        );
 
-      const saved = JSON.parse(raw);
+      if (!raw) {
+        return;
+      }
 
-      if (!Array.isArray(saved.data)) return;
+      const saved =
+        JSON.parse(raw);
 
-      data = saved.data;
+      if (
+        !Array.isArray(
+          saved.data
+        )
+      ) {
+        return;
+      }
 
-    } catch (e) {
-      console.warn("Could not load saved state", e);
+      data =
+        saved.data;
+
+    } catch (error) {
+
+      console.warn(
+        "Could not load saved state:",
+        error
+      );
     }
   }
 
   function saveState() {
+
     try {
+
       localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify({
           version: 2,
-          savedAt: new Date().toISOString(),
+          savedAt:
+            new Date().toISOString(),
           data
         })
       );
-    } catch (e) {
-      console.error("Could not save state", e);
+
+    } catch (error) {
+
+      console.error(
+        "Could not save state:",
+        error
+      );
 
       showMessage(
         "تعذر الحفظ في localStorage. قد تكون مساحة التخزين ممتلئة."
@@ -61,7 +147,11 @@
   // =========================================================
 
   function reviewedStatus(item) {
-    return item?.review?.status || null;
+
+    return (
+      item?.review?.status ||
+      null
+    );
   }
 
   // =========================================================
@@ -69,37 +159,86 @@
   // =========================================================
 
   function updateStats() {
-    const total = data.length;
 
-    const reviewed = data.filter(
-      x => reviewedStatus(x)
-    ).length;
+    const total =
+      data.length;
 
-    const correct = data.filter(
-      x => reviewedStatus(x) === "CORRECT"
-    ).length;
+    const reviewed =
+      data.filter(
+        item =>
+          reviewedStatus(item)
+      ).length;
 
-    const incorrect = data.filter(
-      x => reviewedStatus(x) === "INCORRECT"
-    ).length;
+    const correct =
+      data.filter(
+        item =>
+          reviewedStatus(item) ===
+          "CORRECT"
+      ).length;
 
-    $("totalStat").textContent = total;
-    $("reviewedStat").textContent = reviewed;
-    $("correctStat").textContent = correct;
-    $("incorrectStat").textContent = incorrect;
-    $("remainingStat").textContent = total - reviewed;
+    const incorrect =
+      data.filter(
+        item =>
+          reviewedStatus(item) ===
+          "INCORRECT"
+      ).length;
+
+    const totalStat =
+      $("totalStat");
+
+    const reviewedStat =
+      $("reviewedStat");
+
+    const correctStat =
+      $("correctStat");
+
+    const incorrectStat =
+      $("incorrectStat");
+
+    const remainingStat =
+      $("remainingStat");
+
+    if (totalStat) {
+      totalStat.textContent =
+        total;
+    }
+
+    if (reviewedStat) {
+      reviewedStat.textContent =
+        reviewed;
+    }
+
+    if (correctStat) {
+      correctStat.textContent =
+        correct;
+    }
+
+    if (incorrectStat) {
+      incorrectStat.textContent =
+        incorrect;
+    }
+
+    if (remainingStat) {
+      remainingStat.textContent =
+        total - reviewed;
+    }
   }
 
   // =========================================================
   // SEARCH
   // =========================================================
 
-  function matchesSearch(item, q) {
-    if (!q) return true;
+  function matchesSearch(item, query) {
+
+    if (!query) {
+      return true;
+    }
 
     return JSON.stringify(item)
       .toLowerCase()
-      .includes(q.toLowerCase());
+      .includes(
+        query.toLowerCase()
+      );
   }
 
   // =========================================================
@@ -107,33 +246,72 @@
   // =========================================================
 
   function rebuildVisible() {
-    const q = $("searchInput").value.trim();
-    const filter = $("filterSelect").value;
 
-    visibleIndexes = data
-      .map((item, i) => ({
-        item,
-        i
-      }))
-      .filter(({ item }) => {
-        const status = reviewedStatus(item);
+    const searchInput =
+      $("searchInput");
 
-        const filterOk =
-          filter === "ALL" ||
-          (filter === "UNREVIEWED" && !status) ||
-          status === filter;
+    const filterSelect =
+      $("filterSelect");
 
-        return filterOk && matchesSearch(item, q);
-      })
-      .map(x => x.i);
+    const q =
+      searchInput
+        ? searchInput.value.trim()
+        : "";
 
-    if (!visibleIndexes.length) {
+    const filter =
+      filterSelect
+        ? filterSelect.value
+        : "ALL";
+
+    visibleIndexes =
+      data
+        .map((item, index) => ({
+          item,
+          index
+        }))
+        .filter(({ item }) => {
+
+          const status =
+            reviewedStatus(item);
+
+          const filterOk =
+            filter === "ALL" ||
+            (
+              filter === "UNREVIEWED" &&
+              !status
+            ) ||
+            status === filter;
+
+          return (
+            filterOk &&
+            matchesSearch(
+              item,
+              q
+            )
+          );
+        })
+        .map(
+          result =>
+            result.index
+        );
+
+    if (
+      !visibleIndexes.length
+    ) {
+
       renderEmpty();
+
       return;
     }
 
-    if (!visibleIndexes.includes(currentIndex)) {
-      currentIndex = visibleIndexes[0];
+    if (
+      !visibleIndexes.includes(
+        currentIndex
+      )
+    ) {
+
+      currentIndex =
+        visibleIndexes[0];
     }
 
     renderItem();
@@ -144,164 +322,281 @@
   // =========================================================
 
   function renderEmpty() {
-    $("itemPosition").textContent = "0 / 0";
 
-    $("itemStatus").textContent = "لا توجد نتائج";
+    const itemPosition =
+      $("itemPosition");
 
-    $("itemStatus").className = "badge neutral";
+    const itemStatus =
+      $("itemStatus");
 
-    $("datasetName").textContent = DATASET_NAME;
+    const datasetName =
+      $("datasetName");
 
-    $("itemEditor").innerHTML = `
-      <div class="empty">
-        لا توجد عناصر مطابقة للبحث أو الفلتر.
-      </div>
-    `;
+    const itemEditor =
+      $("itemEditor");
 
-    $("notesInput").value = "";
+    const notesInput =
+      $("notesInput");
+
+    if (itemPosition) {
+      itemPosition.textContent =
+        "0 / 0";
+    }
+
+    if (itemStatus) {
+
+      itemStatus.textContent =
+        "لا توجد نتائج";
+
+      itemStatus.className =
+        "badge neutral";
+    }
+
+    if (datasetName) {
+
+      datasetName.textContent =
+        DATASET_NAME;
+    }
+
+    if (itemEditor) {
+
+      itemEditor.innerHTML = `
+        <div class="empty">
+          لا توجد عناصر مطابقة للبحث أو الفلتر.
+        </div>
+      `;
+    }
+
+    if (notesInput) {
+      notesInput.value = "";
+    }
   }
 
   // =========================================================
   // RENDER VALUE
   // =========================================================
 
-  function renderValue(key, value) {
-    const wrapper = document.createElement("div");
+  function renderValue(
+    key,
+    value
+  ) {
 
-    wrapper.className = "editor-value";
+    const wrapper =
+      document.createElement(
+        "div"
+      );
+
+    wrapper.className =
+      "editor-value";
 
     // =======================================================
     // ARRAY
     // =======================================================
 
     if (Array.isArray(value)) {
-      const list = document.createElement("div");
 
-      list.className = "array-list";
+      const list =
+        document.createElement(
+          "div"
+        );
 
-      value.forEach((v, idx) => {
-        const row = document.createElement("div");
+      list.className =
+        "array-list";
 
-        row.className = "array-item";
+      value.forEach(
+        (itemValue, index) => {
 
-        // ---------------------------------------------------
-        // INPUT
-        // ---------------------------------------------------
+          const row =
+            document.createElement(
+              "div"
+            );
 
-        const input = document.createElement("input");
+          row.className =
+            "array-item";
 
-        input.value =
-          typeof v === "string"
-            ? v
-            : JSON.stringify(v);
+          // -------------------------------------------------
+          // INPUT
+          // -------------------------------------------------
 
-        input.dataset.path = key;
-        input.dataset.index = idx;
-        input.dataset.kind = "array";
+          const input =
+            document.createElement(
+              "input"
+            );
 
-        // ---------------------------------------------------
-        // SAVE ARRAY VALUE WHILE TYPING
-        // ---------------------------------------------------
+          input.value =
+            typeof itemValue === "string"
+              ? itemValue
+              : JSON.stringify(
+                  itemValue
+                );
 
-        input.addEventListener("input", () => {
-          const item = data[currentIndex];
+          input.dataset.path =
+            key;
 
-          const index = Number(
-            input.dataset.index
+          input.dataset.index =
+            index;
+
+          input.dataset.kind =
+            "array";
+
+          // -------------------------------------------------
+          // SAVE WHILE TYPING
+          // -------------------------------------------------
+
+          input.addEventListener(
+            "input",
+            () => {
+
+              const item =
+                data[currentIndex];
+
+              const itemIndex =
+                Number(
+                  input.dataset.index
+                );
+
+              if (!item) {
+                return;
+              }
+
+              if (
+                !Array.isArray(
+                  item[key]
+                )
+              ) {
+                return;
+              }
+
+              item[key][itemIndex] =
+                input.value;
+
+              saveState();
+            }
           );
 
-          if (!item) return;
+          // -------------------------------------------------
+          // DELETE
+          // -------------------------------------------------
 
-          if (!Array.isArray(item[key])) {
+          const del =
+            document.createElement(
+              "button"
+            );
+
+          del.className =
+            "secondary";
+
+          del.type =
+            "button";
+
+          del.textContent =
+            "حذف";
+
+          del.onclick =
+            () => {
+
+              const item =
+                data[currentIndex];
+
+              if (!item) {
+                return;
+              }
+
+              if (
+                !Array.isArray(
+                  item[key]
+                )
+              ) {
+                return;
+              }
+
+              item[key].splice(
+                index,
+                1
+              );
+
+              saveState();
+
+              renderItem();
+            };
+
+          row.append(
+            input,
+            del
+          );
+
+          list.appendChild(
+            row
+          );
+        }
+      );
+
+      // =====================================================
+      // ADD
+      // =====================================================
+
+      const add =
+        document.createElement(
+          "button"
+        );
+
+      add.className =
+        "secondary";
+
+      add.type =
+        "button";
+
+      add.textContent =
+        "+ إضافة";
+
+      add.onclick =
+        () => {
+
+          const item =
+            data[currentIndex];
+
+          if (!item) {
             return;
           }
 
-          item[key][index] = input.value;
-
-          saveState();
-        });
-
-        // ---------------------------------------------------
-        // DELETE ARRAY ITEM
-        // ---------------------------------------------------
-
-        const del = document.createElement("button");
-
-        del.className = "secondary";
-
-        del.textContent = "حذف";
-
-        del.type = "button";
-
-        del.onclick = () => {
-          const item = data[currentIndex];
-
-          if (!item) return;
-
-          if (!Array.isArray(item[key])) {
-            return;
+          if (
+            !Array.isArray(
+              item[key]
+            )
+          ) {
+            item[key] = [];
           }
 
-          item[key].splice(idx, 1);
+          item[key].push("");
 
           saveState();
 
           renderItem();
+
+          setTimeout(
+            () => {
+
+              const inputs =
+                $("itemEditor")
+                  ?.querySelectorAll(
+                    `input[data-path="${key}"]`
+                  );
+
+              if (!inputs?.length) {
+                return;
+              }
+
+              const lastInput =
+                inputs[
+                  inputs.length - 1
+                ];
+
+              lastInput.focus();
+
+            },
+            0
+          );
         };
-
-        row.append(
-          input,
-          del
-        );
-
-        list.appendChild(row);
-      });
-
-      // =====================================================
-      // ADD ARRAY ITEM
-      // =====================================================
-
-      const add = document.createElement("button");
-
-      add.className = "secondary";
-
-      add.type = "button";
-
-      add.textContent = "+ إضافة";
-
-      add.onclick = () => {
-        const item = data[currentIndex];
-
-        if (!item) return;
-
-        if (!Array.isArray(item[key])) {
-          item[key] = [];
-        }
-
-        item[key].push("");
-
-        saveState();
-
-        renderItem();
-
-        // ---------------------------------------------------
-        // Focus newly created input
-        // ---------------------------------------------------
-
-        setTimeout(() => {
-          const inputs =
-            $("itemEditor").querySelectorAll(
-              `input[data-path="${key}"]`
-            );
-
-          const lastInput =
-            inputs[inputs.length - 1];
-
-          if (lastInput) {
-            lastInput.focus();
-          }
-        }, 0);
-      };
 
       wrapper.append(
         list,
@@ -319,25 +614,35 @@
       value !== null &&
       typeof value === "object"
     ) {
+
       const textarea =
-        document.createElement("textarea");
+        document.createElement(
+          "textarea"
+        );
 
-      textarea.value = JSON.stringify(
-        value,
-        null,
-        2
-      );
+      textarea.value =
+        JSON.stringify(
+          value,
+          null,
+          2
+        );
 
-      textarea.dataset.path = key;
+      textarea.dataset.path =
+        key;
 
-      textarea.dataset.kind = "json";
+      textarea.dataset.kind =
+        "json";
 
       textarea.addEventListener(
         "change",
         () => {
+
           try {
+
             data[currentIndex][key] =
-              JSON.parse(textarea.value);
+              JSON.parse(
+                textarea.value
+              );
 
             saveState();
 
@@ -346,6 +651,7 @@
             );
 
           } catch {
+
             showMessage(
               "القيمة JSON غير صحيحة."
             );
@@ -355,7 +661,9 @@
         }
       );
 
-      wrapper.appendChild(textarea);
+      wrapper.appendChild(
+        textarea
+      );
 
       return wrapper;
     }
@@ -365,18 +673,31 @@
     // =======================================================
 
     const input =
-      document.createElement("input");
+      document.createElement(
+        "input"
+      );
 
-    input.value = value ?? "";
+    input.value =
+      value ?? "";
 
-    input.dataset.path = key;
+    input.dataset.path =
+      key;
 
-    input.dataset.kind = "scalar";
+    input.dataset.kind =
+      "scalar";
 
     input.addEventListener(
       "change",
       () => {
-        data[currentIndex][key] =
+
+        const item =
+          data[currentIndex];
+
+        if (!item) {
+          return;
+        }
+
+        item[key] =
           input.value;
 
         saveState();
@@ -385,7 +706,9 @@
       }
     );
 
-    wrapper.appendChild(input);
+    wrapper.appendChild(
+      input
+    );
 
     return wrapper;
   }
@@ -395,23 +718,48 @@
   // =========================================================
 
   function renderItem() {
-    const item = data[currentIndex];
+
+    const item =
+      data[currentIndex];
 
     if (!item) {
+
       renderEmpty();
+
       return;
     }
 
-    const pos =
+    const position =
       visibleIndexes.indexOf(
         currentIndex
       ) + 1;
 
-    $("itemPosition").textContent =
-      `${pos} / ${visibleIndexes.length}`;
+    const itemPosition =
+      $("itemPosition");
 
-    $("datasetName").textContent =
-      DATASET_NAME;
+    const datasetName =
+      $("datasetName");
+
+    const itemStatus =
+      $("itemStatus");
+
+    const notesInput =
+      $("notesInput");
+
+    const editor =
+      $("itemEditor");
+
+    if (itemPosition) {
+
+      itemPosition.textContent =
+        `${position} / ${visibleIndexes.length}`;
+    }
+
+    if (datasetName) {
+
+      datasetName.textContent =
+        DATASET_NAME;
+    }
 
     // =======================================================
     // STATUS
@@ -420,69 +768,83 @@
     const status =
       reviewedStatus(item);
 
-    $("itemStatus").textContent =
-      status === "CORRECT"
-        ? "Correct"
-        : status === "INCORRECT"
-          ? "Incorrect"
-          : "غير مراجع";
+    if (itemStatus) {
 
-    $("itemStatus").className =
-      `badge ${
+      itemStatus.textContent =
         status === "CORRECT"
-          ? "correct"
+          ? "Correct"
           : status === "INCORRECT"
-            ? "incorrect"
-            : "neutral"
-      }`;
+            ? "Incorrect"
+            : "غير مراجع";
+
+      itemStatus.className =
+        `badge ${
+          status === "CORRECT"
+            ? "correct"
+            : status === "INCORRECT"
+              ? "incorrect"
+              : "neutral"
+        }`;
+    }
 
     // =======================================================
     // NOTES
     // =======================================================
 
-    $("notesInput").value =
-      item.review?.notes || "";
+    if (notesInput) {
+
+      notesInput.value =
+        item.review?.notes ||
+        "";
+    }
 
     // =======================================================
     // EDITOR
     // =======================================================
 
-    const editor =
-      $("itemEditor");
+    if (!editor) {
+      return;
+    }
 
     editor.innerHTML = "";
 
     Object.entries(item).forEach(
       ([key, value]) => {
 
-        // Do not render review as normal field
         if (key === "review") {
           return;
         }
 
         const row =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
         row.className =
           "editor-row";
 
-        const keyEl =
-          document.createElement("div");
+        const keyElement =
+          document.createElement(
+            "div"
+          );
 
-        keyEl.className =
+        keyElement.className =
           "editor-key";
 
-        keyEl.textContent = key;
+        keyElement.textContent =
+          getFieldLabel(key);
 
         row.append(
-          keyEl,
+          keyElement,
           renderValue(
             key,
             value
           )
         );
 
-        editor.appendChild(row);
+        editor.appendChild(
+          row
+        );
       }
     );
 
@@ -493,19 +855,32 @@
   // MESSAGE
   // =========================================================
 
-  function showMessage(msg) {
-    $("saveMessage").textContent =
-      msg;
+  function showMessage(message) {
+
+    const element =
+      $("saveMessage");
+
+    if (!element) {
+      return;
+    }
+
+    element.textContent =
+      message;
 
     clearTimeout(
       showMessage.timer
     );
 
     showMessage.timer =
-      setTimeout(() => {
-        $("saveMessage").textContent =
-          "";
-      }, 3000);
+      setTimeout(
+        () => {
+
+          element.textContent =
+            "";
+
+        },
+        5000
+      );
   }
 
   // =========================================================
@@ -513,18 +888,24 @@
   // =========================================================
 
   function setReview(status) {
+
     const item =
       data[currentIndex];
 
-    if (!item) return;
+    if (!item) {
+      return;
+    }
 
     item.review = {
+
       reviewed: true,
 
       status,
 
       notes:
-        $("notesInput").value.trim(),
+        $("notesInput")
+          ?.value
+          .trim() || "",
 
       reviewedAt:
         new Date().toISOString()
@@ -542,11 +923,14 @@
   // =========================================================
 
   function clearReview() {
+
     if (!data[currentIndex]) {
       return;
     }
 
-    delete data[currentIndex].review;
+    delete data[
+      currentIndex
+    ].review;
 
     saveState();
 
@@ -558,20 +942,25 @@
   // =========================================================
 
   function done() {
-    const item = data[currentIndex];
 
-    if (!item) return;
+    const item =
+      data[currentIndex];
+
+    if (!item) {
+      return;
+    }
+
+    const editor =
+      $("itemEditor");
 
     // =======================================================
-    // 1. SAVE ALL CURRENT EDITOR CHANGES
+    // SAVE CURRENT EDITOR
     // =======================================================
-
-    const editor = $("itemEditor");
 
     if (editor) {
 
       // -----------------------------------------------------
-      // Scalar inputs
+      // SCALAR
       // -----------------------------------------------------
 
       const scalarInputs =
@@ -579,18 +968,23 @@
           'input[data-kind="scalar"]'
         );
 
-      scalarInputs.forEach(input => {
-        const key =
-          input.dataset.path;
+      scalarInputs.forEach(
+        input => {
 
-        if (!key) return;
+          const key =
+            input.dataset.path;
 
-        item[key] =
-          input.value;
-      });
+          if (!key) {
+            return;
+          }
+
+          item[key] =
+            input.value;
+        }
+      );
 
       // -----------------------------------------------------
-      // Array inputs
+      // ARRAY
       // -----------------------------------------------------
 
       const arrayInputs =
@@ -598,32 +992,39 @@
           'input[data-kind="array"]'
         );
 
-      arrayInputs.forEach(input => {
-        const key =
-          input.dataset.path;
+      arrayInputs.forEach(
+        input => {
 
-        const index =
-          Number(input.dataset.index);
+          const key =
+            input.dataset.path;
 
-        if (
-          !key ||
-          !Number.isInteger(index)
-        ) {
-          return;
+          const index =
+            Number(
+              input.dataset.index
+            );
+
+          if (
+            !key ||
+            !Number.isInteger(index)
+          ) {
+            return;
+          }
+
+          if (
+            !Array.isArray(
+              item[key]
+            )
+          ) {
+            return;
+          }
+
+          item[key][index] =
+            input.value;
         }
-
-        if (
-          !Array.isArray(item[key])
-        ) {
-          return;
-        }
-
-        item[key][index] =
-          input.value;
-      });
+      );
 
       // -----------------------------------------------------
-      // JSON textareas
+      // JSON
       // -----------------------------------------------------
 
       const jsonTextareas =
@@ -631,21 +1032,29 @@
           'textarea[data-kind="json"]'
         );
 
-      for (const textarea of jsonTextareas) {
+      for (
+        const textarea
+        of jsonTextareas
+      ) {
+
         const key =
           textarea.dataset.path;
 
-        if (!key) continue;
+        if (!key) {
+          continue;
+        }
 
         try {
+
           item[key] =
             JSON.parse(
               textarea.value
             );
 
         } catch {
+
           showMessage(
-            `القيمة الخاصة بـ "${key}" تحتوي JSON غير صحيح.`
+            `القيمة الخاصة بـ "${getFieldLabel(key)}" تحتوي JSON غير صحيح.`
           );
 
           textarea.focus();
@@ -656,13 +1065,14 @@
     }
 
     // =======================================================
-    // 2. CHECK REVIEW STATUS
+    // CHECK STATUS
     // =======================================================
 
-    const status =
+    let status =
       reviewedStatus(item);
 
     if (!status) {
+
       showMessage(
         "اختر Correct أو Incorrect أولًا."
       );
@@ -671,23 +1081,26 @@
     }
 
     // =======================================================
-    // 3. SAVE REVIEW + NOTES
+    // SAVE REVIEW
     // =======================================================
 
     item.review = {
+
       reviewed: true,
 
       status,
 
       notes:
-        $("notesInput").value.trim(),
+        $("notesInput")
+          ?.value
+          .trim() || "",
 
       reviewedAt:
         new Date().toISOString()
     };
 
     // =======================================================
-    // 4. SAVE EVERYTHING
+    // SAVE EVERYTHING
     // =======================================================
 
     saveState();
@@ -699,7 +1112,7 @@
     );
 
     // =======================================================
-    // 5. MOVE TO NEXT VISIBLE ITEM
+    // MOVE NEXT
     // =======================================================
 
     const currentPosition =
@@ -715,8 +1128,11 @@
       nextPosition <
         visibleIndexes.length
     ) {
+
       currentIndex =
-        visibleIndexes[nextPosition];
+        visibleIndexes[
+          nextPosition
+        ];
 
       renderItem();
 
@@ -733,25 +1149,29 @@
   // =========================================================
 
   function move(delta) {
-    if (!visibleIndexes.length) {
+
+    if (
+      !visibleIndexes.length
+    ) {
       return;
     }
 
-    let p =
+    let position =
       visibleIndexes.indexOf(
         currentIndex
       );
 
-    p = Math.max(
-      0,
-      Math.min(
-        visibleIndexes.length - 1,
-        p + delta
-      )
-    );
+    position =
+      Math.max(
+        0,
+        Math.min(
+          visibleIndexes.length - 1,
+          position + delta
+        )
+      );
 
     currentIndex =
-      visibleIndexes[p];
+      visibleIndexes[position];
 
     renderItem();
   }
@@ -760,19 +1180,26 @@
   // GO TO NUMBER
   // =========================================================
 
-  function goToVisibleNumber(n) {
-    if (!visibleIndexes.length) {
+  function goToVisibleNumber(
+    value
+  ) {
+
+    if (
+      !visibleIndexes.length
+    ) {
       return;
     }
 
     const number =
-      Number(n);
+      Number(value);
 
-    if (!Number.isFinite(number)) {
+    if (
+      !Number.isFinite(number)
+    ) {
       return;
     }
 
-    const p =
+    const position =
       Math.max(
         1,
         Math.min(
@@ -782,7 +1209,7 @@
       ) - 1;
 
     currentIndex =
-      visibleIndexes[p];
+      visibleIndexes[position];
 
     renderItem();
   }
@@ -796,6 +1223,7 @@
     content,
     type
   ) {
+
     const blob =
       new Blob(
         [content],
@@ -803,55 +1231,82 @@
       );
 
     const url =
-      URL.createObjectURL(blob);
+      URL.createObjectURL(
+        blob
+      );
 
-    const a =
-      document.createElement("a");
+    const anchor =
+      document.createElement(
+        "a"
+      );
 
-    a.href = url;
+    anchor.href =
+      url;
 
-    a.download = filename;
+    anchor.download =
+      filename;
 
-    document.body.appendChild(a);
+    document.body.appendChild(
+      anchor
+    );
 
-    a.click();
+    anchor.click();
 
-    document.body.removeChild(a);
+    document.body.removeChild(
+      anchor
+    );
 
-    setTimeout(() => {
-      URL.revokeObjectURL(url);
-    }, 1000);
+    setTimeout(
+      () => {
+
+        URL.revokeObjectURL(
+          url
+        );
+
+      },
+      1000
+    );
   }
 
   // =========================================================
   // EXPORT DATA PREPARATION
   // =========================================================
 
-  function getExportData(clean) {
-    return clone(data).map(item => {
+  function getExportData(
+    clean
+  ) {
 
-      if (!clean) {
-        return item;
-      }
+    return clone(data)
+      .map(item => {
 
-      const copy =
-        clone(item);
+        if (!clean) {
+          return item;
+        }
 
-      delete copy.review;
+        const copy =
+          clone(item);
 
-      return copy;
-    });
+        delete copy.review;
+
+        return copy;
+      });
   }
 
   // =========================================================
   // EXPORT JSON
   // =========================================================
 
-  function exportJSON(clean) {
+  function exportJSON(
+    clean
+  ) {
+
     const output =
-      getExportData(clean);
+      getExportData(
+        clean
+      );
 
     download(
+
       clean
         ? `${DATASET_ID}-clean.json`
         : `${DATASET_ID}-reviewed.json`,
@@ -870,9 +1325,14 @@
   // EXPORT JS
   // =========================================================
 
-  function exportJS(clean) {
+  function exportJS(
+    clean
+  ) {
+
     const output =
-      getExportData(clean);
+      getExportData(
+        clean
+      );
 
     const source =
       `const egyptianGraniteMaterials = ${JSON.stringify(
@@ -884,6 +1344,7 @@
       `window.egyptianGraniteMaterials = egyptianGraniteMaterials;\n`;
 
     download(
+
       clean
         ? `${DATASET_ID}-clean.js`
         : `${DATASET_ID}-reviewed.js`,
@@ -898,7 +1359,10 @@
   // NORMALIZE SLUG
   // =========================================================
 
-  function normalizeSlug(slug) {
+  function normalizeSlug(
+    slug
+  ) {
+
     if (
       slug === null ||
       slug === undefined
@@ -912,38 +1376,37 @@
   }
 
   // =========================================================
-  // EXTRACT ARRAY FROM JS DATASET
-  // =========================================================
-  //
-  // Supported format:
-  //
-  // const egyptianGraniteMaterials = [
-  //   {...},
-  //   {...}
-  // ];
-  //
-  // window.egyptianGraniteMaterials =
-  //   egyptianGraniteMaterials;
-  //
+  // EXTRACT ARRAY FROM JS
   // =========================================================
 
-  function extractArrayFromJS(source) {
+  function extractArrayFromJS(
+    source
+  ) {
 
     if (
       typeof source !== "string" ||
       !source.trim()
     ) {
+
       throw new Error(
         "ملف JavaScript فارغ."
       );
     }
 
-    // -------------------------------------------------------
-    // Find dataset declaration
-    // -------------------------------------------------------
+    // =======================================================
+    // SUPPORT:
+    //
+    // const egyptianGraniteMaterials = [...]
+    //
+    // export const egyptianGraniteMaterials = [...]
+    //
+    // let egyptianGraniteMaterials = [...]
+    //
+    // var egyptianGraniteMaterials = [...]
+    // =======================================================
 
     const declarationRegex =
-      /(?:const|let|var)\s+egyptianGraniteMaterials\s*=\s*/;
+      /(?:export\s+)?(?:const|let|var)\s+egyptianGraniteMaterials\s*=\s*/;
 
     const declarationMatch =
       source.match(
@@ -951,6 +1414,7 @@
       );
 
     if (!declarationMatch) {
+
       throw new Error(
         "لم يتم العثور على egyptianGraniteMaterials داخل ملف JS."
       );
@@ -960,40 +1424,50 @@
       declarationMatch.index +
       declarationMatch[0].length;
 
-    // -------------------------------------------------------
-    // Find opening [
-    // -------------------------------------------------------
+    // =======================================================
+    // FIND [
+    // =======================================================
 
-    let arrayStart = -1;
+    let arrayStart =
+      -1;
 
     for (
       let i = start;
       i < source.length;
       i++
     ) {
+
       if (
         source[i] === "["
       ) {
-        arrayStart = i;
+
+        arrayStart =
+          i;
+
         break;
       }
 
       if (
-        !/\s/.test(source[i])
+        !/\s/.test(
+          source[i]
+        )
       ) {
         break;
       }
     }
 
-    if (arrayStart === -1) {
+    if (
+      arrayStart === -1
+    ) {
+
       throw new Error(
         "لم يتم العثور على Array داخل ملف JS."
       );
     }
 
-    // -------------------------------------------------------
-    // Balanced bracket parser
-    // -------------------------------------------------------
+    // =======================================================
+    // BALANCED ARRAY PARSER
+    // =======================================================
 
     let depth = 0;
 
@@ -1001,45 +1475,55 @@
 
     let escaped = false;
 
-    let arrayEnd = -1;
+    let arrayEnd =
+      -1;
 
     for (
       let i = arrayStart;
       i < source.length;
       i++
     ) {
+
       const char =
         source[i];
 
       // -----------------------------------------------------
-      // Inside string
+      // INSIDE STRING
       // -----------------------------------------------------
 
       if (quote) {
 
         if (escaped) {
-          escaped = false;
+
+          escaped =
+            false;
+
           continue;
         }
 
         if (
           char === "\\"
         ) {
-          escaped = true;
+
+          escaped =
+            true;
+
           continue;
         }
 
         if (
           char === quote
         ) {
-          quote = null;
+
+          quote =
+            null;
         }
 
         continue;
       }
 
       // -----------------------------------------------------
-      // Start string
+      // START STRING
       // -----------------------------------------------------
 
       if (
@@ -1047,46 +1531,60 @@
         char === "'" ||
         char === "`"
       ) {
-        quote = char;
+
+        quote =
+          char;
+
         continue;
       }
 
       // -----------------------------------------------------
-      // Array start
+      // ARRAY START
       // -----------------------------------------------------
 
       if (
         char === "["
       ) {
+
         depth++;
+
         continue;
       }
 
       // -----------------------------------------------------
-      // Array end
+      // ARRAY END
       // -----------------------------------------------------
 
       if (
         char === "]"
       ) {
+
         depth--;
 
-        if (depth === 0) {
-          arrayEnd = i;
+        if (
+          depth === 0
+        ) {
+
+          arrayEnd =
+            i;
+
           break;
         }
       }
     }
 
-    if (arrayEnd === -1) {
+    if (
+      arrayEnd === -1
+    ) {
+
       throw new Error(
         "لم يتم إغلاق Array بشكل صحيح."
       );
     }
 
-    // -------------------------------------------------------
-    // Get only Array expression
-    // -------------------------------------------------------
+    // =======================================================
+    // ARRAY SOURCE
+    // =======================================================
 
     const arraySource =
       source.slice(
@@ -1094,40 +1592,38 @@
         arrayEnd + 1
       );
 
-    // -------------------------------------------------------
-    // Convert JS Array literal to actual data
-    // -------------------------------------------------------
-    //
-    // This supports the dataset format generated
-    // by this application.
-    //
-    // -------------------------------------------------------
+    // =======================================================
+    // PARSE
+    // =======================================================
 
     let parsed;
 
     try {
+
       const factory =
         new Function(
           `"use strict"; return (${arraySource});`
         );
 
-      parsed = factory();
+      parsed =
+        factory();
 
-    } catch (e) {
+    } catch (error) {
 
       console.error(
         "JS dataset parsing error:",
-        e
+        error
       );
 
       throw new Error(
-        "تعذر قراءة Array الموجودة داخل ملف JS."
+        "تعذر قراءة Array الموجودة داخل ملف JS. تأكد أن صيغة البيانات صحيحة."
       );
     }
 
     if (
       !Array.isArray(parsed)
     ) {
+
       throw new Error(
         "البيانات المستخرجة من ملف JS ليست Array."
       );
@@ -1137,10 +1633,280 @@
   }
 
   // =========================================================
+  // MERGE IMPORTED ITEMS
+  // =========================================================
+
+  function mergeImportedItems(
+    parsed,
+    sourceName = "ملف البيانات"
+  ) {
+
+    if (
+      !Array.isArray(parsed)
+    ) {
+
+      throw new Error(
+        "البيانات المستوردة يجب أن تكون Array."
+      );
+    }
+
+    if (
+      !parsed.length
+    ) {
+
+      showMessage(
+        "⚠️ الملف فارغ."
+      );
+
+      return;
+    }
+
+    // =======================================================
+    // VALID ITEMS
+    // =======================================================
+
+    const validItems =
+      parsed.filter(
+        item =>
+          item &&
+          typeof item === "object" &&
+          !Array.isArray(item)
+      );
+
+    if (
+      !validItems.length
+    ) {
+
+      throw new Error(
+        "لم يتم العثور على عناصر صحيحة داخل الملف."
+      );
+    }
+
+    // =======================================================
+    // CONFIRM
+    // =======================================================
+
+    const confirmed =
+      confirm(
+
+        `${sourceName}\n\n` +
+
+        `عدد العناصر في الملف: ${validItems.length}\n` +
+
+        `عدد العناصر الحالية: ${data.length}\n\n` +
+
+        `سيتم إضافة العناصر الجديدة فقط.\n` +
+
+        `البيانات الحالية لن يتم حذفها.\n` +
+
+        `العناصر التي لها نفس slug لن تتكرر.\n` +
+
+        `أي Reviews أو تعديلات موجودة ستظل كما هي.\n\n` +
+
+        `هل تريد المتابعة؟`
+      );
+
+    if (!confirmed) {
+
+      showMessage(
+        "تم إلغاء الاستيراد."
+      );
+
+      return;
+    }
+
+    // =======================================================
+    // EXISTING SLUGS
+    // =======================================================
+
+    const existingSlugs =
+      new Set();
+
+    data.forEach(
+      item => {
+
+        if (
+          item &&
+          typeof item === "object"
+        ) {
+
+          const slug =
+            normalizeSlug(
+              item.slug
+            );
+
+          if (slug) {
+
+            existingSlugs.add(
+              slug
+            );
+          }
+        }
+      }
+    );
+
+    // =======================================================
+    // MERGE COUNTERS
+    // =======================================================
+
+    let added = 0;
+
+    let duplicates = 0;
+
+    let withoutSlug = 0;
+
+    let invalid = 0;
+
+    // =======================================================
+    // IMPORTED SLUGS
+    // =======================================================
+
+    const importedSlugs =
+      new Set();
+
+    // =======================================================
+    // MERGE
+    // =======================================================
+
+    validItems.forEach(
+      newItem => {
+
+        const item =
+          clone(newItem);
+
+        const slug =
+          normalizeSlug(
+            item.slug
+          );
+
+        // ---------------------------------------------------
+        // WITHOUT SLUG
+        // ---------------------------------------------------
+
+        if (!slug) {
+
+          data.push(item);
+
+          added++;
+
+          withoutSlug++;
+
+          return;
+        }
+
+        // ---------------------------------------------------
+        // DUPLICATE EXISTING
+        // ---------------------------------------------------
+
+        if (
+          existingSlugs.has(
+            slug
+          )
+        ) {
+
+          duplicates++;
+
+          return;
+        }
+
+        // ---------------------------------------------------
+        // DUPLICATE INSIDE IMPORT
+        // ---------------------------------------------------
+
+        if (
+          importedSlugs.has(
+            slug
+          )
+        ) {
+
+          duplicates++;
+
+          return;
+        }
+
+        // ---------------------------------------------------
+        // ADD
+        // ---------------------------------------------------
+
+        data.push(item);
+
+        existingSlugs.add(
+          slug
+        );
+
+        importedSlugs.add(
+          slug
+        );
+
+        added++;
+      }
+    );
+
+    // =======================================================
+    // INVALID
+    // =======================================================
+
+    invalid =
+      parsed.length -
+      validItems.length;
+
+    // =======================================================
+    // SAVE
+    // =======================================================
+
+    saveState();
+
+    updateStats();
+
+    // =======================================================
+    // RESET POSITION
+    // =======================================================
+
+    currentIndex =
+      0;
+
+    rebuildVisible();
+
+    // =======================================================
+    // RESULT
+    // =======================================================
+
+    let message =
+      `✓ تم الاستيراد والدمج بنجاح.\n` +
+
+      `تمت إضافة: ${added}\n` +
+
+      `المكرر: ${duplicates}`;
+
+    if (
+      withoutSlug > 0
+    ) {
+
+      message +=
+        `\nبدون slug: ${withoutSlug}`;
+    }
+
+    if (
+      invalid > 0
+    ) {
+
+      message +=
+        `\nعناصر غير صالحة: ${invalid}`;
+    }
+
+    showMessage(
+      message
+    );
+  }
+
+  // =========================================================
   // PARSE IMPORT FILE
   // =========================================================
 
-  function parseImportFile(file, source) {
+  function parseImportFile(
+    file,
+    source
+  ) {
 
     const fileName =
       String(
@@ -1154,22 +1920,29 @@
             .pop()
         : "";
 
-    // -------------------------------------------------------
+    // =======================================================
     // JSON
-    // -------------------------------------------------------
+    // =======================================================
 
     if (
       extension === "json" ||
-      file.type === "application/json"
+      file?.type ===
+        "application/json"
     ) {
+
       try {
 
         const parsed =
-          JSON.parse(source);
+          JSON.parse(
+            source
+          );
 
         if (
-          !Array.isArray(parsed)
+          !Array.isArray(
+            parsed
+          )
         ) {
+
           throw new Error(
             "ملف JSON يجب أن يحتوي Array."
           );
@@ -1177,13 +1950,14 @@
 
         return parsed;
 
-      } catch (e) {
+      } catch (error) {
 
         if (
-          e.message ===
+          error.message ===
           "ملف JSON يجب أن يحتوي Array."
         ) {
-          throw e;
+
+          throw error;
         }
 
         throw new Error(
@@ -1192,23 +1966,26 @@
       }
     }
 
-    // -------------------------------------------------------
-    // JavaScript
-    // -------------------------------------------------------
+    // =======================================================
+    // JS
+    // =======================================================
 
     if (
       extension === "js" ||
-      file.type === "text/javascript" ||
-      file.type === "application/javascript"
+      file?.type ===
+        "text/javascript" ||
+      file?.type ===
+        "application/javascript"
     ) {
+
       return extractArrayFromJS(
         source
       );
     }
 
-    // -------------------------------------------------------
-    // Auto detect
-    // -------------------------------------------------------
+    // =======================================================
+    // AUTO JSON
+    // =======================================================
 
     const trimmed =
       source.trim();
@@ -1216,27 +1993,36 @@
     if (
       trimmed.startsWith("[")
     ) {
+
       try {
 
         const parsed =
-          JSON.parse(trimmed);
+          JSON.parse(
+            trimmed
+          );
 
         if (
           Array.isArray(parsed)
         ) {
+
           return parsed;
         }
 
       } catch {
-        // Continue and try JS
+        // Continue
       }
     }
+
+    // =======================================================
+    // AUTO JS
+    // =======================================================
 
     if (
       trimmed.includes(
         "egyptianGraniteMaterials"
       )
     ) {
+
       return extractArrayFromJS(
         source
       );
@@ -1248,309 +2034,265 @@
   }
 
   // =========================================================
-  // IMPORT DATA - JSON + JS
+  // IMPORT MANUAL FILE
   // =========================================================
 
-  function importData(file) {
+  function importData(
+    file
+  ) {
 
     const reader =
       new FileReader();
 
-    reader.onload = () => {
+    reader.onload =
+      () => {
 
-      try {
+        try {
 
-        const source =
-          String(
-            reader.result || ""
+          const source =
+            String(
+              reader.result || ""
+            );
+
+          const parsed =
+            parseImportFile(
+              file,
+              source
+            );
+
+          const fileName =
+            String(
+              file?.name ||
+              "الملف"
+            );
+
+          mergeImportedItems(
+            parsed,
+            `ملف: ${fileName}`
           );
 
-        // ---------------------------------------------------
-        // Parse file
-        // ---------------------------------------------------
+        } catch (error) {
 
-        const parsed =
-          parseImportFile(
-            file,
-            source
+          console.error(
+            "Import error:",
+            error
           );
 
-        // ---------------------------------------------------
-        // Validate
-        // ---------------------------------------------------
-
-        if (
-          !Array.isArray(parsed)
-        ) {
-          throw new Error(
-            "البيانات المستوردة يجب أن تكون Array."
-          );
-        }
-
-        if (
-          !parsed.length
-        ) {
-          showMessage(
-            "⚠️ الملف فارغ."
-          );
-
-          return;
-        }
-
-        // ---------------------------------------------------
-        // Count valid objects
-        // ---------------------------------------------------
-
-        const validItems =
-          parsed.filter(item =>
-            item &&
-            typeof item === "object" &&
-            !Array.isArray(item)
-          );
-
-        if (
-          !validItems.length
-        ) {
-          throw new Error(
-            "لم يتم العثور على عناصر صحيحة داخل الملف."
+          alert(
+            `فشل الاستيراد:\n\n${error.message}`
           );
         }
+      };
 
-        // ---------------------------------------------------
-        // Detect file type for message
-        // ---------------------------------------------------
-
-        const fileName =
-          String(
-            file?.name || ""
-          );
-
-        const fileType =
-          fileName
-            .toLowerCase()
-            .endsWith(".js")
-            ? "JavaScript"
-            : "JSON";
-
-        // ---------------------------------------------------
-        // Confirm merge
-        // ---------------------------------------------------
-
-        const confirmed =
-          confirm(
-            `ملف ${fileType}\n\n` +
-
-            `عدد العناصر في الملف: ${validItems.length}\n` +
-
-            `عدد العناصر الحالية: ${data.length}\n\n` +
-
-            `سيتم إضافة العناصر الجديدة فقط.\n` +
-
-            `البيانات الحالية لن يتم حذفها.\n` +
-
-            `العناصر التي لها نفس slug لن تتكرر.\n` +
-
-            `أي Reviews أو تعديلات موجودة ستظل كما هي.\n\n` +
-
-            `هل تريد المتابعة؟`
-          );
-
-        if (!confirmed) {
-
-          showMessage(
-            "تم إلغاء الاستيراد."
-          );
-
-          return;
-        }
-
-        // ===================================================
-        // BUILD EXISTING SLUG SET
-        // ===================================================
-
-        const existingSlugs =
-          new Set();
-
-        data.forEach(item => {
-
-          if (
-            item &&
-            typeof item === "object"
-          ) {
-
-            const slug =
-              normalizeSlug(
-                item.slug
-              );
-
-            if (slug) {
-              existingSlugs.add(
-                slug
-              );
-            }
-          }
-        });
-
-        // ===================================================
-        // MERGE
-        // ===================================================
-
-        let added = 0;
-
-        let duplicates = 0;
-
-        let withoutSlug = 0;
-
-        let invalid = 0;
-
-        // ---------------------------------------------------
-        // Track duplicates inside imported file too
-        // ---------------------------------------------------
-
-        const importedSlugs =
-          new Set();
-
-        validItems.forEach(
-          newItem => {
-
-            const item =
-              clone(newItem);
-
-            const slug =
-              normalizeSlug(
-                item.slug
-              );
-
-            // -----------------------------------------------
-            // Item without slug
-            // -----------------------------------------------
-
-            if (!slug) {
-
-              data.push(item);
-
-              added++;
-
-              withoutSlug++;
-
-              return;
-            }
-
-            // -----------------------------------------------
-            // Duplicate against existing data
-            // -----------------------------------------------
-
-            if (
-              existingSlugs.has(slug)
-            ) {
-
-              duplicates++;
-
-              return;
-            }
-
-            // -----------------------------------------------
-            // Duplicate inside same imported file
-            // -----------------------------------------------
-
-            if (
-              importedSlugs.has(slug)
-            ) {
-
-              duplicates++;
-
-              return;
-            }
-
-            // -----------------------------------------------
-            // Add new item
-            // -----------------------------------------------
-
-            data.push(item);
-
-            existingSlugs.add(slug);
-
-            importedSlugs.add(slug);
-
-            added++;
-          }
-        );
-
-        // ---------------------------------------------------
-        // Count invalid records
-        // ---------------------------------------------------
-
-        invalid =
-          parsed.length -
-          validItems.length;
-
-        // ===================================================
-        // SAVE
-        // ===================================================
-
-        saveState();
-
-        updateStats();
-
-        // ===================================================
-        // RESET CURRENT POSITION
-        // ===================================================
-
-        currentIndex = 0;
-
-        rebuildVisible();
-
-        // ===================================================
-        // RESULT MESSAGE
-        // ===================================================
-
-        let message =
-          `✓ تم الاستيراد والدمج بنجاح.\n` +
-          `تمت إضافة: ${added}\n` +
-          `المكرر: ${duplicates}`;
-
-        if (
-          withoutSlug > 0
-        ) {
-          message +=
-            `\nبدون slug: ${withoutSlug}`;
-        }
-
-        if (
-          invalid > 0
-        ) {
-          message +=
-            `\nعناصر غير صالحة: ${invalid}`;
-        }
-
-        showMessage(
-          message
-        );
-
-      } catch (e) {
-
-        console.error(
-          "Import error:",
-          e
-        );
+    reader.onerror =
+      () => {
 
         alert(
-          `فشل الاستيراد:\n\n${e.message}`
+          "تعذر قراءة الملف."
         );
-      }
-    };
-
-    reader.onerror = () => {
-
-      alert(
-        "تعذر قراءة الملف."
-      );
-    };
+      };
 
     reader.readAsText(
       file,
       "utf-8"
     );
+  }
+
+  // =========================================================
+  // IMPORT FROM DATA FOLDER
+  // =========================================================
+
+  async function importFromDataFolder() {
+
+    try {
+
+      showMessage(
+        "جاري قراءة البيانات من مجلد data..."
+      );
+
+      // =====================================================
+      // CHECK PAGE PROTOCOL
+      // =====================================================
+
+      if (
+        location.protocol ===
+        "file:"
+      ) {
+
+        throw new Error(
+
+          "الصفحة تعمل حاليًا من file://.\n\n" +
+
+          "زر الاستيراد التلقائي من مجلد data يحتاج تشغيل المشروع عبر Web Server.\n\n" +
+
+          "مثال:\n" +
+
+          "http://localhost:3000\n\n" +
+
+          "وليس:\n" +
+
+          "file:///C:/..."
+        );
+      }
+
+      // =====================================================
+      // FETCH
+      // =====================================================
+
+      const response =
+        await fetch(
+          DATA_FOLDER_FILE,
+          {
+            cache: "no-store"
+          }
+        );
+
+      // =====================================================
+      // HTTP ERROR
+      // =====================================================
+
+      if (
+        !response.ok
+      ) {
+
+        throw new Error(
+
+          `HTTP ${response.status}\n\n` +
+
+          `تعذر الوصول إلى الملف:\n` +
+
+          `${DATA_FOLDER_FILE}\n\n` +
+
+          `تأكد أن الملف موجود داخل مجلد data بجوار الصفحة.`
+        );
+      }
+
+      // =====================================================
+      // READ TEXT
+      // =====================================================
+
+      const source =
+        await response.text();
+
+      if (
+        !source.trim()
+      ) {
+
+        throw new Error(
+          "ملف البيانات فارغ."
+        );
+      }
+
+      // =====================================================
+      // PARSE
+      // =====================================================
+
+      const importedItems =
+        extractArrayFromJS(
+          source
+        );
+
+      if (
+        !Array.isArray(
+          importedItems
+        )
+      ) {
+
+        throw new Error(
+          "ملف البيانات لا يحتوي على Array صحيحة."
+        );
+      }
+
+      // =====================================================
+      // MERGE
+      // =====================================================
+
+      mergeImportedItems(
+        importedItems,
+        "Egyptian Granite Materials"
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Import from data folder error:",
+        error
+      );
+
+      alert(
+        "تعذر استيراد البيانات.\n\n" +
+        error.message
+      );
+    }
+  }
+
+  // =========================================================
+  // RESET DATA
+  // =========================================================
+
+  function resetData() {
+
+    const confirmed =
+      confirm(
+
+        "⚠️ إعادة ضبط البيانات\n\n" +
+
+        "سيتم حذف جميع البيانات المحفوظة لهذه الأداة، " +
+
+        "بما في ذلك:\n\n" +
+
+        "• التعديلات\n" +
+
+        "• المراجعات\n" +
+
+        "• الملاحظات\n" +
+
+        "• البيانات التي تم استيرادها\n\n" +
+
+        "وسيتم الرجوع إلى Dataset الأصلي.\n\n" +
+
+        "هذه العملية لا يمكن التراجع عنها.\n\n" +
+
+        "هل أنت متأكد من المتابعة؟"
+      );
+
+    if (!confirmed) {
+
+      showMessage(
+        "تم إلغاء إعادة الضبط."
+      );
+
+      return;
+    }
+
+    try {
+
+      localStorage.removeItem(
+        STORAGE_KEY
+      );
+
+      showMessage(
+        "✓ تم حذف البيانات المحفوظة. جارٍ إعادة تحميل الصفحة..."
+      );
+
+      setTimeout(
+        () => {
+          location.reload();
+        },
+        500
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Reset error:",
+        error
+      );
+
+      alert(
+        "تعذر حذف البيانات المحفوظة."
+      );
+    }
   }
 
   // =========================================================
@@ -1600,17 +2342,26 @@
       );
 
   // =========================================================
+  // RESET BUTTON
+  // =========================================================
+
+  $("resetDataBtn").onclick =
+    resetData;
+
+  // =========================================================
   // GOTO ENTER
   // =========================================================
 
   $("gotoInput").addEventListener(
     "keydown",
-    e => {
+    event => {
 
-      if (e.key === "Enter") {
+      if (
+        event.key === "Enter"
+      ) {
 
         goToVisibleNumber(
-          e.target.value
+          event.target.value
         );
       }
     }
@@ -1635,62 +2386,79 @@
   );
 
   // =========================================================
-  // EXPORT BUTTONS
+  // EXPORT JSON
   // =========================================================
 
-  /*
-    Each button downloads ONE file only.
+  $("exportReviewedBtn").onclick =
+    () => {
 
-    This prevents the browser from showing:
+      exportJSON(false);
 
-    "This site attempted to download multiple files"
-  */
+      showMessage(
+        "✓ تم تحميل ملف JSON المراجع."
+      );
+    };
 
-  $("exportReviewedBtn").onclick = () => {
+  $("exportCleanBtn").onclick =
+    () => {
 
-    exportJSON(false);
+      exportJSON(true);
 
-    showMessage(
-      "✓ تم تحميل ملف JSON المراجع."
-    );
-  };
-
-  $("exportCleanBtn").onclick = () => {
-
-    exportJSON(true);
-
-    showMessage(
-      "✓ تم تحميل ملف JSON النظيف."
-    );
-  };
+      showMessage(
+        "✓ تم تحميل ملف JSON النظيف."
+      );
+    };
 
   // =========================================================
-  // IMPORT
+  // IMPORT BUTTON
+  // =========================================================
+  //
+  // IMPORTANT:
+  //
+  // The button now reads automatically from:
+  //
+  // ./data/egyptianGraniteMaterials.js
+  //
+  // It does NOT open the file picker.
+  //
   // =========================================================
 
   $("importBtn").onclick =
-    () =>
-      $("fileInput").click();
+    importFromDataFolder;
 
-  $("fileInput").addEventListener(
-    "change",
-    e => {
+  // =========================================================
+  // OPTIONAL MANUAL FILE INPUT
+  // =========================================================
+  //
+  // This remains available if you want to enable
+  // manual file importing later.
+  //
+  // =========================================================
 
-      if (
-        e.target.files &&
-        e.target.files[0]
-      ) {
+  const fileInput =
+    $("fileInput");
 
-        importData(
-          e.target.files[0]
-        );
+  if (fileInput) {
+
+    fileInput.addEventListener(
+      "change",
+      event => {
+
+        if (
+          event.target.files &&
+          event.target.files[0]
+        ) {
+
+          importData(
+            event.target.files[0]
+          );
+        }
+
+        event.target.value =
+          "";
       }
-
-      // Reset input so the same
-      // file can be selected again
-      e.target.value = "";
-    }
-  );
+    );
+  }
 
   // =========================================================
   // KEYBOARD SHORTCUTS
@@ -1698,10 +2466,11 @@
 
   document.addEventListener(
     "keydown",
-    e => {
+    event => {
 
       const tag =
-        document.activeElement?.tagName;
+        document.activeElement
+          ?.tagName;
 
       const typing =
         [
@@ -1712,22 +2481,26 @@
 
       if (
         !typing &&
-        e.key === "ArrowRight"
+        event.key === "ArrowRight"
       ) {
+
         move(1);
       }
 
       if (
         !typing &&
-        e.key === "ArrowLeft"
+        event.key === "ArrowLeft"
       ) {
+
         move(-1);
       }
 
       if (
         !typing &&
-        e.key.toLowerCase() === "s"
+        event.key.toLowerCase() ===
+          "s"
       ) {
+
         done();
       }
     }
