@@ -1,421 +1,965 @@
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta
-        name="theme-color"
-        content="#F3F1EC"
-    >
+<meta
+    name="theme-color"
+    content="#F3F1EC"
+>
 
-    <meta
-        name="description"
-        content="م الآخر — تجربة فريدة في عالم الرخام. كل حاجة أسهل."
-    >
+<meta
+    name="description"
+    content="م الآخر — تجربة فريدة في عالم الرخام. كل حاجة أسهل."
+>
 
-    <title>
-        م الآخر | تجربة فريدة في عالم الرخام
-    </title>
+<title>
+    م الآخر | تجربة فريدة في عالم الرخام
+</title>
 
 
-    <style>
+<style>
 
-        /* =====================================================
-           COLORS
-        ===================================================== */
+    /* =====================================================
+       COLORS
+    ===================================================== */
 
-        :root {
+    :root {
 
-            --background: #F3F1EC;
+        --background: #F3F1EC;
 
-            --surface: #FBFAF7;
+        --surface: #FBFAF7;
 
-            --text: #242321;
+        --text: #242321;
 
-            --muted: #77736D;
+        --muted: #77736D;
 
-            --accent: #A92D35;
+        --accent: #A92D35;
 
-            --accent-soft: #B94B52;
+        --accent-soft: #B94B52;
 
-            --stone: #9B968E;
+        --stone: #9B968E;
 
-            --border: #DDD8CF;
+        --border: #DDD8CF;
+
+    }
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    * {
+
+        margin: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+
+    }
+
+
+    html {
+
+        min-height: 100%;
+
+    }
+
+
+    body {
+
+        min-height: 100vh;
+
+        position: relative;
+
+        overflow: hidden;
+
+        font-family:
+
+            "Cairo",
+
+            "Noto Sans Arabic",
+
+            Arial,
+
+            sans-serif;
+
+        color: var(--text);
+
+        background: var(--background);
+
+    }
+
+
+    /* =====================================================
+       SOFT MARBLE ATMOSPHERE
+    ===================================================== */
+
+    body::before {
+
+        content: "";
+
+        position: fixed;
+
+        inset: -20%;
+
+        pointer-events: none;
+
+        background:
+
+            radial-gradient(
+
+                ellipse at 20% 25%,
+
+                rgba(255,255,255,.95),
+
+                transparent 35%
+
+            ),
+
+            radial-gradient(
+
+                ellipse at 80% 75%,
+
+                rgba(215,211,203,.55),
+
+                transparent 38%
+
+            );
+
+        filter: blur(35px);
+
+        z-index: -2;
+
+    }
+
+
+    /* =====================================================
+       SUBTLE MARBLE VEINS
+    ===================================================== */
+
+    body::after {
+
+        content: "";
+
+        position: fixed;
+
+        inset: -150px;
+
+        pointer-events: none;
+
+        opacity: .12;
+
+        background:
+
+            linear-gradient(
+
+                112deg,
+
+                transparent 20%,
+
+                rgba(110,105,98,.20) 20.3%,
+
+                transparent 20.7%
+
+            ),
+
+            linear-gradient(
+
+                68deg,
+
+                transparent 45%,
+
+                rgba(110,105,98,.15) 45.2%,
+
+                transparent 45.5%
+
+            ),
+
+            linear-gradient(
+
+                130deg,
+
+                transparent 72%,
+
+                rgba(110,105,98,.13) 72.3%,
+
+                transparent 72.6%
+
+            );
+
+        background-size:
+
+            700px 600px,
+
+            850px 700px,
+
+            900px 800px;
+
+        transform: rotate(-5deg);
+
+        z-index: -1;
+
+    }
+
+
+    /* =====================================================
+       PAGE
+    ===================================================== */
+
+    .page {
+
+        min-height: 100vh;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 30px;
+
+    }
+
+
+    .container {
+
+        width: 100%;
+
+        max-width: 950px;
+
+        text-align: center;
+
+    }
+
+
+    /* =====================================================
+       TOP BAR
+    ===================================================== */
+
+    .topbar {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-bottom: 35px;
+
+        animation:
+
+            fadeDown
+
+            .9s
+
+            ease
+
+            both;
+
+    }
+
+
+    .brand {
+
+        font-size: 15px;
+
+        font-weight: 800;
+
+        color: var(--text);
+
+    }
+
+
+    .status {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        color: var(--muted);
+
+        font-size: 12px;
+
+    }
+
+
+    .status-dot {
+
+        width: 7px;
+
+        height: 7px;
+
+        border-radius: 50%;
+
+        background: var(--accent);
+
+        box-shadow:
+
+            0 0 0 5px
+
+            rgba(169,45,53,.08);
+
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+
+        position: relative;
+
+        padding:
+
+            clamp(55px, 8vw, 85px)
+
+            clamp(25px, 7vw, 80px);
+
+        border-radius: 36px;
+
+        background:
+
+            rgba(251,250,247,.84);
+
+        border:
+
+            1px solid
+
+            rgba(190,185,177,.55);
+
+        box-shadow:
+
+            0 30px 80px
+
+            rgba(70,65,58,.10),
+
+            inset 0 1px 0
+
+            rgba(255,255,255,.95);
+
+        backdrop-filter:
+
+            blur(14px);
+
+        overflow: hidden;
+
+        animation:
+
+            fadeUp
+
+            1s
+
+            .1s
+
+            ease
+
+            both;
+
+    }
+
+
+    /* =====================================================
+       TOP ACCENT
+    ===================================================== */
+
+    .hero::before {
+
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+
+        left: 50%;
+
+        transform:
+
+            translateX(-50%);
+
+        width: 130px;
+
+        height: 3px;
+
+        border-radius:
+
+            0 0 10px 10px;
+
+        background:
+
+            var(--accent);
+
+    }
+
+
+    /* =====================================================
+       LOGO
+    ===================================================== */
+
+    .logo-wrapper {
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        margin-bottom: 28px;
+
+    }
+
+
+    .logo {
+
+        width:
+
+            min(270px, 62vw);
+
+        max-height:
+
+            150px;
+
+        object-fit:
+
+            contain;
+
+        display:
+
+            block;
+
+        filter:
+
+            drop-shadow(
+
+                0 12px 25px
+
+                rgba(0,0,0,.08)
+
+            );
+
+    }
+
+
+    /* =====================================================
+       QURAN VERSE
+    ===================================================== */
+
+    .verse {
+
+        margin:
+
+            0 auto 34px;
+
+        color:
+
+            #5F5A53;
+
+        font-family:
+
+            "Amiri",
+
+            "Noto Naskh Arabic",
+
+            "Times New Roman",
+
+            serif;
+
+        font-size:
+
+            clamp(
+
+                22px,
+
+                3.8vw,
+
+                30px
+
+            );
+
+        line-height:
+
+            1.9;
+
+        font-weight:
+
+            700;
+
+        text-shadow:
+
+            0 1px 0
+
+            rgba(255,255,255,.6);
+
+    }
+
+
+    .verse-reference {
+
+        display: block;
+
+        margin-top: 3px;
+
+        font-family:
+
+            "Cairo",
+
+            Arial,
+
+            sans-serif;
+
+        font-size:
+
+            11px;
+
+        font-weight:
+
+            500;
+
+        color:
+
+            #8E8981;
+
+    }
+
+
+    /* =====================================================
+       MAIN MESSAGE
+    ===================================================== */
+
+    h1 {
+
+        font-size:
+
+            clamp(
+
+                34px,
+
+                6vw,
+
+                62px
+
+            );
+
+        line-height:
+
+            1.4;
+
+        letter-spacing:
+
+            -1.7px;
+
+        font-weight:
+
+            800;
+
+        color:
+
+            var(--text);
+
+        margin-bottom:
+
+            17px;
+
+    }
+
+
+    h1 span {
+
+        color:
+
+            var(--accent);
+
+    }
+
+
+    /* =====================================================
+       BRAND TAGLINE
+    ===================================================== */
+
+    .tagline {
+
+        font-size:
+
+            clamp(
+
+                20px,
+
+                3.5vw,
+
+                28px
+
+            );
+
+        line-height:
+
+            1.7;
+
+        font-weight:
+
+            600;
+
+        color:
+
+            #403D39;
+
+    }
+
+
+    .tagline strong {
+
+        color:
+
+            var(--accent);
+
+        font-weight:
+
+            800;
+
+    }
+
+
+    /* =====================================================
+       DIVIDER
+    ===================================================== */
+
+    .divider {
+
+        width:
+
+            60px;
+
+        height:
+
+            2px;
+
+        margin:
+
+            34px auto 27px;
+
+        border-radius:
+
+            20px;
+
+        background:
+
+            var(--accent);
+
+    }
+
+
+    /* =====================================================
+       COMING SOON
+    ===================================================== */
+
+    .coming-soon {
+
+        display:
+
+            inline-flex;
+
+        align-items:
+
+            center;
+
+        gap:
+
+            9px;
+
+        color:
+
+            var(--muted);
+
+        font-size:
+
+            13px;
+
+        font-weight:
+
+            600;
+
+    }
+
+
+    .coming-soon .dot {
+
+        width:
+
+            6px;
+
+        height:
+
+            6px;
+
+        border-radius:
+
+            50%;
+
+        background:
+
+            var(--accent);
+
+    }
+
+
+    /* =====================================================
+       REVIEW BUTTON
+    ===================================================== */
+
+    .review-button {
+
+        display:
+
+            inline-flex;
+
+        align-items:
+
+            center;
+
+        justify-content:
+
+            center;
+
+        margin-top:
+
+            25px;
+
+        padding:
+
+            13px 30px;
+
+        border-radius:
+
+            14px;
+
+        background:
+
+            var(--accent);
+
+        color:
+
+            #fff;
+
+        text-decoration:
+
+            none;
+
+        font-size:
+
+            14px;
+
+        font-weight:
+
+            700;
+
+        box-shadow:
+
+            0 10px 25px
+
+            rgba(169,45,53,.18);
+
+        transition:
+
+            transform .2s ease,
+
+            box-shadow .2s ease,
+
+            background .2s ease;
+
+    }
+
+
+    .review-button:hover {
+
+        background:
+
+            var(--accent-soft);
+
+        transform:
+
+            translateY(-2px);
+
+        box-shadow:
+
+            0 14px 30px
+
+            rgba(169,45,53,.24);
+
+    }
+
+
+    .review-button:active {
+
+        transform:
+
+            translateY(0);
+
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+
+        margin-top:
+
+            22px;
+
+        color:
+
+            rgba(36,35,33,.35);
+
+        font-size:
+
+            11px;
+
+        animation:
+
+            fadeUp
+
+            1s
+
+            .4s
+
+            ease
+
+            both;
+
+    }
+
+
+    /* =====================================================
+       ANIMATIONS
+    ===================================================== */
+
+    @keyframes fadeUp {
+
+        from {
+
+            opacity: 0;
+
+            transform:
+
+                translateY(18px);
 
         }
 
+        to {
 
-        /* =====================================================
-           RESET
-        ===================================================== */
+            opacity: 1;
 
-        * {
+            transform:
 
-            margin: 0;
-
-            padding: 0;
-
-            box-sizing: border-box;
+                translateY(0);
 
         }
 
+    }
 
-        html {
 
-            min-height: 100%;
+    @keyframes fadeDown {
+
+        from {
+
+            opacity: 0;
+
+            transform:
+
+                translateY(-12px);
 
         }
 
+        to {
+
+            opacity: 1;
+
+            transform:
+
+                translateY(0);
+
+        }
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 600px) {
 
         body {
 
-            min-height: 100vh;
+            overflow:
 
-            position: relative;
-
-            overflow: hidden;
-
-            font-family:
-
-                "Cairo",
-
-                "Noto Sans Arabic",
-
-                Arial,
-
-                sans-serif;
-
-            color: var(--text);
-
-            background: var(--background);
+                auto;
 
         }
 
-
-        /* =====================================================
-           SOFT MARBLE ATMOSPHERE
-        ===================================================== */
-
-        body::before {
-
-            content: "";
-
-            position: fixed;
-
-            inset: -20%;
-
-            pointer-events: none;
-
-            background:
-
-                radial-gradient(
-
-                    ellipse at 20% 25%,
-
-                    rgba(255,255,255,.95),
-
-                    transparent 35%
-
-                ),
-
-                radial-gradient(
-
-                    ellipse at 80% 75%,
-
-                    rgba(215,211,203,.55),
-
-                    transparent 38%
-
-                );
-
-            filter: blur(35px);
-
-            z-index: -2;
-
-        }
-
-
-        /* =====================================================
-           SUBTLE MARBLE VEINS
-        ===================================================== */
-
-        body::after {
-
-            content: "";
-
-            position: fixed;
-
-            inset: -150px;
-
-            pointer-events: none;
-
-            opacity: .12;
-
-            background:
-
-                linear-gradient(
-
-                    112deg,
-
-                    transparent 20%,
-
-                    rgba(110,105,98,.20) 20.3%,
-
-                    transparent 20.7%
-
-                ),
-
-                linear-gradient(
-
-                    68deg,
-
-                    transparent 45%,
-
-                    rgba(110,105,98,.15) 45.2%,
-
-                    transparent 45.5%
-
-                ),
-
-                linear-gradient(
-
-                    130deg,
-
-                    transparent 72%,
-
-                    rgba(110,105,98,.13) 72.3%,
-
-                    transparent 72.6%
-
-                );
-
-            background-size:
-
-                700px 600px,
-
-                850px 700px,
-
-                900px 800px;
-
-            transform: rotate(-5deg);
-
-            z-index: -1;
-
-        }
-
-
-        /* =====================================================
-           PAGE
-        ===================================================== */
 
         .page {
 
-            min-height: 100vh;
+            min-height:
 
-            display: flex;
+                100vh;
 
-            align-items: center;
+            padding:
 
-            justify-content: center;
-
-            padding: 30px;
+                16px 14px;
 
         }
 
-
-        .container {
-
-            width: 100%;
-
-            max-width: 950px;
-
-            text-align: center;
-
-        }
-
-
-        /* =====================================================
-           TOP BAR
-        ===================================================== */
 
         .topbar {
 
-            display: flex;
+            margin-bottom:
 
-            align-items: center;
-
-            justify-content: space-between;
-
-            margin-bottom: 35px;
-
-            animation:
-
-                fadeDown
-
-                .9s
-
-                ease
-
-                both;
+                20px;
 
         }
 
 
         .brand {
 
-            font-size: 15px;
+            font-size:
 
-            font-weight: 800;
-
-            color: var(--text);
+                14px;
 
         }
 
-
-        .status {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-            color: var(--muted);
-
-            font-size: 12px;
-
-        }
-
-
-        .status-dot {
-
-            width: 7px;
-
-            height: 7px;
-
-            border-radius: 50%;
-
-            background: var(--accent);
-
-            box-shadow:
-
-                0 0 0 5px
-
-                rgba(169,45,53,.08);
-
-        }
-
-
-        /* =====================================================
-           HERO
-        ===================================================== */
 
         .hero {
 
-            position: relative;
-
             padding:
 
-                clamp(55px, 8vw, 85px)
-
-                clamp(25px, 7vw, 80px);
-
-            border-radius: 36px;
-
-            background:
-
-                rgba(251,250,247,.84);
-
-            border:
-
-                1px solid
-
-                rgba(190,185,177,.55);
-
-            box-shadow:
-
-                0 30px 80px
-
-                rgba(70,65,58,.10),
-
-                inset 0 1px 0
-
-                rgba(255,255,255,.95);
-
-            backdrop-filter:
-
-                blur(14px);
-
-            overflow: hidden;
-
-            animation:
-
-                fadeUp
-
-                1s
-
-                .1s
-
-                ease
-
-                both;
-
-        }
-
-
-        /* =====================================================
-           TOP ACCENT
-        ===================================================== */
-
-        .hero::before {
-
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-
-            left: 50%;
-
-            transform:
-
-                translateX(-50%);
-
-            width: 130px;
-
-            height: 3px;
+                48px 19px;
 
             border-radius:
 
-                0 0 10px 10px;
-
-            background:
-
-                var(--accent);
+                27px;
 
         }
 
 
-        /* =====================================================
-           LOGO
-        ===================================================== */
-
         .logo-wrapper {
 
-            display: flex;
+            margin-bottom:
 
-            justify-content: center;
-
-            align-items: center;
-
-            margin-bottom: 28px;
+                25px;
 
         }
 
@@ -424,674 +968,258 @@
 
             width:
 
-                min(270px, 62vw);
+                200px;
 
             max-height:
 
-                150px;
-
-            object-fit:
-
-                contain;
-
-            display:
-
-                block;
-
-            filter:
-
-                drop-shadow(
-
-                    0 12px 25px
-
-                    rgba(0,0,0,.08)
-
-                );
+                115px;
 
         }
 
 
-        /* =====================================================
-           QURAN VERSE
-        ===================================================== */
-
         .verse {
-
-            margin:
-
-                0 auto 34px;
-
-            color:
-
-                #5F5A53;
-
-            font-family:
-
-                "Amiri",
-
-                "Noto Naskh Arabic",
-
-                "Times New Roman",
-
-                serif;
 
             font-size:
 
-                clamp(
-
-                    22px,
-
-                    3.8vw,
-
-                    30px
-
-                );
-
-            line-height:
-
-                1.9;
+                23px;
 
             font-weight:
 
                 700;
 
-            text-shadow:
+            margin-bottom:
 
-                0 1px 0
-
-                rgba(255,255,255,.6);
+                28px;
 
         }
 
 
         .verse-reference {
 
-            display: block;
-
-            margin-top: 3px;
-
-            font-family:
-
-                "Cairo",
-
-                Arial,
-
-                sans-serif;
-
             font-size:
 
-                11px;
-
-            font-weight:
-
-                500;
-
-            color:
-
-                #8E8981;
+                10px;
 
         }
 
-
-        /* =====================================================
-           MAIN MESSAGE
-        ===================================================== */
 
         h1 {
 
             font-size:
 
-                clamp(
-
-                    34px,
-
-                    6vw,
-
-                    62px
-
-                );
+                35px;
 
             line-height:
 
-                1.4;
+                1.45;
 
             letter-spacing:
 
-                -1.7px;
-
-            font-weight:
-
-                800;
-
-            color:
-
-                var(--text);
-
-            margin-bottom:
-
-                17px;
+                -1px;
 
         }
 
-
-        h1 span {
-
-            color:
-
-                var(--accent);
-
-        }
-
-
-        /* =====================================================
-           BRAND TAGLINE
-        ===================================================== */
 
         .tagline {
 
             font-size:
 
-                clamp(
-
-                    20px,
-
-                    3.5vw,
-
-                    28px
-
-                );
-
-            line-height:
-
-                1.7;
-
-            font-weight:
-
-                600;
-
-            color:
-
-                #403D39;
+                19px;
 
         }
 
-
-        .tagline strong {
-
-            color:
-
-                var(--accent);
-
-            font-weight:
-
-                800;
-
-        }
-
-
-        /* =====================================================
-           DIVIDER
-        ===================================================== */
 
         .divider {
 
-            width:
-
-                60px;
-
-            height:
-
-                2px;
-
             margin:
 
-                34px auto 27px;
-
-            border-radius:
-
-                20px;
-
-            background:
-
-                var(--accent);
+                28px auto 23px;
 
         }
 
 
-        /* =====================================================
-           COMING SOON
-        ===================================================== */
+        .review-button {
 
-        .coming-soon {
+            width:
 
-            display:
+                100%;
 
-                inline-flex;
+            max-width:
 
-            align-items:
+                280px;
 
-                center;
+            padding:
 
-            gap:
-
-                9px;
-
-            color:
-
-                var(--muted);
+                13px 20px;
 
             font-size:
 
                 13px;
 
-            font-weight:
-
-                600;
-
         }
 
+    }
 
-        .coming-soon .dot {
 
-            width:
-
-                6px;
-
-            height:
-
-                6px;
-
-            border-radius:
-
-                50%;
-
-            background:
-
-                var(--accent);
-
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ===================================================== */
-
-        footer {
-
-            margin-top:
-
-                22px;
-
-            color:
-
-                rgba(36,35,33,.35);
-
-            font-size:
-
-                11px;
-
-            animation:
-
-                fadeUp
-
-                1s
-
-                .4s
-
-                ease
-
-                both;
-
-        }
-
-
-        /* =====================================================
-           ANIMATIONS
-        ===================================================== */
-
-        @keyframes fadeUp {
-
-            from {
-
-                opacity: 0;
-
-                transform:
-
-                    translateY(18px);
-
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform:
-
-                    translateY(0);
-
-            }
-
-        }
-
-
-        @keyframes fadeDown {
-
-            from {
-
-                opacity: 0;
-
-                transform:
-
-                    translateY(-12px);
-
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform:
-
-                    translateY(0);
-
-            }
-
-        }
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        @media (max-width: 600px) {
-
-            body {
-
-                overflow:
-
-                    auto;
-
-            }
-
-
-            .page {
-
-                min-height:
-
-                    100vh;
-
-                padding:
-
-                    16px 14px;
-
-            }
-
-
-            .topbar {
-
-                margin-bottom:
-
-                    20px;
-
-            }
-
-
-            .brand {
-
-                font-size:
-
-                    14px;
-
-            }
-
-
-            .hero {
-
-                padding:
-
-                    48px 19px;
-
-                border-radius:
-
-                    27px;
-
-            }
-
-
-            .logo-wrapper {
-
-                margin-bottom:
-
-                    25px;
-
-            }
-
-
-            .logo {
-
-                width:
-
-                    200px;
-
-                max-height:
-
-                    115px;
-
-            }
-
-
-            .verse {
-
-                font-size:
-
-                    23px;
-
-                font-weight:
-
-                    700;
-
-                margin-bottom:
-
-                    28px;
-
-            }
-
-
-            .verse-reference {
-
-                font-size:
-
-                    10px;
-
-            }
-
-
-            h1 {
-
-                font-size:
-
-                    35px;
-
-                line-height:
-
-                    1.45;
-
-                letter-spacing:
-
-                    -1px;
-
-            }
-
-
-            .tagline {
-
-                font-size:
-
-                    19px;
-
-            }
-
-
-            .divider {
-
-                margin:
-
-                    28px auto 23px;
-
-            }
-
-        }
-
-
-    </style>
+</style>
+```
 
 </head>
 
-
 <body>
 
+```
+<div class="page">
 
-    <div class="page">
 
+    <div class="container">
 
-        <div class="container">
 
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
 
-            <!-- =================================================
-                 TOP BAR
-            ================================================== -->
+        <header class="topbar">
 
-            <header class="topbar">
 
+            <div class="brand">
 
-                <div class="brand">
+                م الآخر
 
-                    م الآخر
+            </div>
 
-                </div>
 
+            <div class="status">
 
-                <div class="status">
+                <span class="status-dot"></span>
 
-                    <span class="status-dot"></span>
+                قريبًا
 
-                    قريبًا
+            </div>
 
-                </div>
 
+        </header>
 
-            </header>
 
 
+        <!-- =================================================
+             HERO
+        ================================================== -->
 
-            <!-- =================================================
-                 HERO
-            ================================================== -->
+        <main class="hero">
 
-            <main class="hero">
 
+            <!-- LOGO -->
 
-                <!-- LOGO -->
+            <div class="logo-wrapper">
 
-                <div class="logo-wrapper">
+                <img
 
-                    <img
+                    src="assets/logo.png"
 
-                        src="assets/logo.png"
+                    alt="م الآخر"
 
-                        alt="م الآخر"
+                    class="logo"
 
-                        class="logo"
+                >
 
-                    >
+            </div>
 
-                </div>
 
 
+            <!-- QURAN VERSE -->
 
-                <!-- QURAN VERSE -->
+            <div class="verse">
 
-                <div class="verse">
+                ﴿وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ﴾
 
-                    ﴿وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ﴾
+                <span class="verse-reference">
 
-                    <span class="verse-reference">
+                    هود: 88
 
-                        هود: 88
+                </span>
 
-                    </span>
+            </div>
 
-                </div>
 
 
+            <!-- MAIN MESSAGE -->
 
-                <!-- MAIN MESSAGE -->
+            <h1>
 
-                <h1>
+                تجربة فريدة في
 
-                    تجربة فريدة في
+                <span>
 
-                    <span>
+                    عالم الرخام
 
-                        عالم الرخام
+                </span>
 
-                    </span>
+            </h1>
 
-                </h1>
 
 
+            <!-- BRAND MESSAGE -->
 
-                <!-- BRAND MESSAGE -->
+            <div class="tagline">
 
-                <div class="tagline">
+                م الآخر —
 
-                    م الآخر —
+                <strong>
 
-                    <strong>
+                    كل حاجة أسهل.
 
-                        كل حاجة أسهل.
+                </strong>
 
-                    </strong>
+            </div>
 
-                </div>
 
 
+            <!-- DIVIDER -->
 
-                <!-- DIVIDER -->
+            <div class="divider"></div>
 
-                <div class="divider"></div>
 
 
+            <!-- COMING SOON -->
 
-                <!-- COMING SOON -->
+            <div class="coming-soon">
 
-                <div class="coming-soon">
+                <span class="dot"></span>
 
-                    <span class="dot"></span>
+                بمشيئة الله، قريبًا
 
-                    بمشيئة الله، قريبًا
+            </div>
 
-                </div>
 
+            <!-- REVIEW BUTTON -->
 
-            </main>
+            <a
+                href="./review/index.html"
+                class="review-button"
+            >
+                دخول إلى مراجعة البيانات
+            </a>
 
 
+        </main>
 
-            <!-- =================================================
-                 FOOTER
-            ================================================== -->
 
-            <footer>
 
-                © 2026 م الآخر
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
 
-            </footer>
+        <footer>
 
+            © 2026 م الآخر
 
-        </div>
+        </footer>
+
 
     </div>
+
+</div>
 
 
 </body>
