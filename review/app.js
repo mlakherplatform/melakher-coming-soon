@@ -40,7 +40,7 @@
     "Egyptian Granite — Part 4";
 
   const DATA_FOLDER_FILE =
-    "./data/egyptianGraniteMaterials.js";
+    "./data/egyptianGraniteMaterials-2.js";
 
   const STORAGE_KEY =
     `material-review-tool:v2:${DATASET_ID}`;
