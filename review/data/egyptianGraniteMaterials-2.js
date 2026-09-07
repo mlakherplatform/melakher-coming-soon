@@ -1,4 +1,4 @@
-export const egyptianMarbleMaterials = [
+export const egyptianGraniteMaterials  = [
   {
     nameAr: "جلالة بيج",
     nameEn: "Galala Beige",
