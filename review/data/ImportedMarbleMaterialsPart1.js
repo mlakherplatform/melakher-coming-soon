@@ -445,8 +445,8 @@ const ImportedMarbleMaterialsPart1 = [
       "فرشاة"
     ],
     status: "نشط"
-  }
-  ///
+  },
+
   {
     nameAr: "رخام كريما مارفيل",
     nameEn: "Crema Marfil Marble",
@@ -748,7 +748,7 @@ const ImportedMarbleMaterialsPart1 = [
       "فرشاة"
     ],
     status: "نشط"
-  }
+  },
   ////
    {
     nameAr: "رخام كريما بوردر",
@@ -1146,8 +1146,8 @@ const ImportedMarbleMaterialsPart1 = [
       "فرشاة"
     ],
     status: "نشط"
-  }
-////turkishImportedMarbleMaterialsPart10
+  },
+
 
   {
     nameAr: "رخام بوردر بيج فاتح",
@@ -1737,8 +1737,8 @@ const ImportedMarbleMaterialsPart1 = [
       "مطفي"
     ],
     status: "نشط"
-  }
-////  turkishImportedMarbleMaterialsPart11
+  },
+
 
   {
     nameAr: "رخام بوردور بيج",
@@ -2276,6 +2276,6 @@ const ImportedMarbleMaterialsPart1 = [
       "مصقول بالفرشاة"
     ],
     status: "نشط"
-  },
+  }
   
 ];
