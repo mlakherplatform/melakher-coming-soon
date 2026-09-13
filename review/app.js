@@ -36,7 +36,7 @@
   // DATASET CONFIG
   // =========================================================
 
-  const DATASET_ID = "granite-part-4";
+  const DATASET_ID = "ImportedMarbleMaterialsPart1";
 
   const DATASET_NAME =
     "ImportedMarbleMaterialsPart1";
