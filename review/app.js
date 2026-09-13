@@ -16,6 +16,8 @@
     originType: "نوع المنشأ",
     country: "الدولة",
     region: "المنطقة",
+    colorNames:"اسامى الالوان",
+    colorCodes:"اكواد الالوان",
     color: "اللون",
     description: "الوصف",
     advantages: "المزايا",
@@ -37,7 +39,7 @@
   const DATASET_ID = "granite-part-4";
 
   const DATASET_NAME =
-    "Egyptian Granite — Part 4";
+    "ImportedMarbleMaterialsPart1";
 
   const DATA_FOLDER_FILE =
     "./data/ImportedMarbleMaterialsPart1.js";
@@ -2209,7 +2211,7 @@
 
       mergeImportedItems(
         importedItems,
-        "Egyptian Granite Materials"
+        "ImportedMarbleMaterialsPart1"
       );
 
     } catch (error) {
