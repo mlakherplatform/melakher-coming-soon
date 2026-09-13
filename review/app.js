@@ -50,8 +50,8 @@
   // =========================================================
 
   let data =
-    Array.isArray(window.egyptianGraniteMaterials)
-      ? window.egyptianGraniteMaterials
+    Array.isArray(window.ImportedMarbleMaterialsPart1)
+      ? window.ImportedMarbleMaterialsPart1
       : [];
 
   let currentIndex = 0;
@@ -1335,13 +1335,13 @@
       );
 
     const source =
-      `const egyptianGraniteMaterials = ${JSON.stringify(
+      `const ImportedMarbleMaterialsPart1 = ${JSON.stringify(
         output,
         null,
         2
       )};\n\n` +
 
-      `window.egyptianGraniteMaterials = egyptianGraniteMaterials;\n`;
+      `window.ImportedMarbleMaterialsPart1 = ImportedMarbleMaterialsPart1;\n`;
 
     download(
 
@@ -1396,17 +1396,17 @@
     // =======================================================
     // SUPPORT:
     //
-    // const egyptianGraniteMaterials = [...]
+    // const ImportedMarbleMaterialsPart1 = [...]
     //
-    // export const egyptianGraniteMaterials = [...]
+    // export const ImportedMarbleMaterialsPart1 = [...]
     //
-    // let egyptianGraniteMaterials = [...]
+    // let ImportedMarbleMaterialsPart1 = [...]
     //
-    // var egyptianGraniteMaterials = [...]
+    // var ImportedMarbleMaterialsPart1 = [...]
     // =======================================================
 
     const declarationRegex =
-      /(?:export\s+)?(?:const|let|var)\s+egyptianGraniteMaterials\s*=\s*/;
+      /(?:export\s+)?(?:const|let|var)\s+ImportedMarbleMaterialsPart1\s*=\s*/;
 
     const declarationMatch =
       source.match(
@@ -1416,7 +1416,7 @@
     if (!declarationMatch) {
 
       throw new Error(
-        "لم يتم العثور على egyptianGraniteMaterials داخل ملف JS."
+        "لم يتم العثور على ImportedMarbleMaterialsPart1 داخل ملف JS."
       );
     }
 
@@ -2019,7 +2019,7 @@
 
     if (
       trimmed.includes(
-        "egyptianGraniteMaterials"
+        "ImportedMarbleMaterialsPart1"
       )
     ) {
 
@@ -2417,7 +2417,7 @@
   //
   // The button now reads automatically from:
   //
-  // ./data/egyptianGraniteMaterials.js
+  // ./data/ImportedMarbleMaterialsPart1.js
   //
   // It does NOT open the file picker.
   //
