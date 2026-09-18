@@ -36,13 +36,13 @@
   // DATASET CONFIG
   // =========================================================
 
-  const DATASET_ID = "ImportedMarbleMaterialsPart1";
+  const DATASET_ID = "ImportedMarbleMaterialsPart2";
 
   const DATASET_NAME =
-    "ImportedMarbleMaterialsPart1";
+    "ImportedMarbleMaterialsPart2";
 
   const DATA_FOLDER_FILE =
-    "./data/ImportedMarbleMaterialsPart1.js";
+    "./data/ImportedMarbleMaterialsPart2.js";
 
   const STORAGE_KEY =
     `material-review-tool:v2:${DATASET_ID}`;
@@ -52,8 +52,8 @@
   // =========================================================
 
   let data =
-    Array.isArray(window.ImportedMarbleMaterialsPart1)
-      ? window.ImportedMarbleMaterialsPart1
+    Array.isArray(window.ImportedMarbleMaterialsPart2)
+      ? window.ImportedMarbleMaterialsPart2
       : [];
 
   let currentIndex = 0;
@@ -1337,13 +1337,13 @@
       );
 
     const source =
-      `const ImportedMarbleMaterialsPart1 = ${JSON.stringify(
+      `const ImportedMarbleMaterialsPart2 = ${JSON.stringify(
         output,
         null,
         2
       )};\n\n` +
 
-      `window.ImportedMarbleMaterialsPart1 = ImportedMarbleMaterialsPart1;\n`;
+      `window.ImportedMarbleMaterialsPart2 = ImportedMarbleMaterialsPart2;\n`;
 
     download(
 
@@ -1398,17 +1398,17 @@
     // =======================================================
     // SUPPORT:
     //
-    // const ImportedMarbleMaterialsPart1 = [...]
+    // const ImportedMarbleMaterialsPart2 = [...]
     //
-    // export const ImportedMarbleMaterialsPart1 = [...]
+    // export const ImportedMarbleMaterialsPart2 = [...]
     //
-    // let ImportedMarbleMaterialsPart1 = [...]
+    // let ImportedMarbleMaterialsPart2 = [...]
     //
-    // var ImportedMarbleMaterialsPart1 = [...]
+    // var ImportedMarbleMaterialsPart2 = [...]
     // =======================================================
 
     const declarationRegex =
-      /(?:export\s+)?(?:const|let|var)\s+ImportedMarbleMaterialsPart1\s*=\s*/;
+      /(?:export\s+)?(?:const|let|var)\s+ImportedMarbleMaterialsPart2\s*=\s*/;
 
     const declarationMatch =
       source.match(
@@ -1418,7 +1418,7 @@
     if (!declarationMatch) {
 
       throw new Error(
-        "لم يتم العثور على ImportedMarbleMaterialsPart1 داخل ملف JS."
+        "لم يتم العثور على ImportedMarbleMaterialsPart2 داخل ملف JS."
       );
     }
 
@@ -2021,7 +2021,7 @@
 
     if (
       trimmed.includes(
-        "ImportedMarbleMaterialsPart1"
+        "ImportedMarbleMaterialsPart2"
       )
     ) {
 
@@ -2211,7 +2211,7 @@
 
       mergeImportedItems(
         importedItems,
-        "ImportedMarbleMaterialsPart1"
+        "ImportedMarbleMaterialsPart2"
       );
 
     } catch (error) {
@@ -2419,7 +2419,7 @@
   //
   // The button now reads automatically from:
   //
-  // ./data/ImportedMarbleMaterialsPart1.js
+  // ./data/ImportedMarbleMaterialsPart2.js
   //
   // It does NOT open the file picker.
   //
