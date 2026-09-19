@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>FCM Token Test</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px; text-align: center;">
+  <h2>جلب FCM Token للموبايل</h2>
+  <button id="btn" style="padding: 15px 25px; font-size: 18px;">تفعيل الإشعارات وجلب التوكن</button>
+  <p id="status"></p>
+  <textarea id="tokenBox" style="width: 100%; height: 150px; display:none;"></textarea>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging.js";
+
+    // 1. ضع بيانات مشروعك من Firebase Console هنا
+    const firebaseConfig = {
+      apiKey: "ضع_الـ_API_KEY_هنا",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const messaging = getMessaging(app);
+
+    document.getElementById('btn').addEventListener('click', async () => {
+      document.getElementById('status').innerText = "جاري طلب الإذن...";
+      try {
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+          // 2. ضع الـ VAPID Key الذي نسخته من الخطوة 1 هنا
+          const token = await getToken(messaging, { 
+            vapidKey: 'ضع_الـ_VAPID_KEY_هنا' 
+          });
+          
+          document.getElementById('status').innerText = "تم جلب التوكن بنجاح! انسخه من المربع أسفله:";
+          const tokenBox = document.getElementById('tokenBox');
+          tokenBox.style.display = "block";
+          tokenBox.value = token;
+        } else {
+          document.getElementById('status').innerText = "تم رفض إذن الإشعارات!";
+        }
+      } catch (err) {
+        document.getElementById('status').innerText = "حدث خطأ: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
