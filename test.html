@@ -16,12 +16,14 @@
 
     // 1. ضع بيانات مشروعك من Firebase Console هنا
     const firebaseConfig = {
-      apiKey: "ضع_الـ_API_KEY_هنا",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
+  apiKey: "AIzaSyAkI4SYofXE5XGMc9Xjyw2ntlAz4Cmltws",
+  authDomain: "mlakher-1cd41.firebaseapp.com",
+  projectId: "mlakher-1cd41",
+  storageBucket: "mlakher-1cd41.firebasestorage.app",
+  messagingSenderId: "997739624789",
+  appId: "1:997739624789:web:6edc42b5523a76939097dc",
+  measurementId: "G-4C0FC4NMW3"
+};
 
     const app = initializeApp(firebaseConfig);
     const messaging = getMessaging(app);
@@ -33,7 +35,7 @@
         if (permission === 'granted') {
           // 2. ضع الـ VAPID Key الذي نسخته من الخطوة 1 هنا
           const token = await getToken(messaging, { 
-            vapidKey: 'ضع_الـ_VAPID_KEY_هنا' 
+            vapidKey: 'BHdjP7c_b-8vNMv__oOIAvA9syanPxKJrgO82xgESbVPyfwxn_JGgRrdpLO2vnuLGuSpoAhkqIGnsqo-M7my6Vk' 
           });
           
           document.getElementById('status').innerText = "تم جلب التوكن بنجاح! انسخه من المربع أسفله:";
